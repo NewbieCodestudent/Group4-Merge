@@ -1,0 +1,65 @@
+#container {
+    position: relative;
+    width: 1130px;
+    height: 1500px;
+    padding: 30px 30px;
+    display: block;
+  }
+
+  #container div {
+    display: block;
+  }
+
+  #event_ad {
+    background-color: blue;
+    width: 1070px;
+    height: 200px;
+  }
+  #recommend_box {
+    position: relative;
+    width: 1070px;
+  }
+  #recommend_club {
+    margin-top : 50px;
+    display: inline-block;
+    border-bottom: 1px solid gray;
+    padding: 0px 0px 30px 0px;
+  }
+  .recommend_club_view {
+    display : inline-block;
+    width: 210px;
+  }
+  .search_all {
+    position : relative;
+    top : 0%;
+    left : 93%;
+    font-size: 25px;
+  }
+  .recommend_img {
+    width: 200px;
+    height: 200px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+  }
+  .member_profill {
+    padding-top: 5px;
+    border-radius: 70%;
+    width : 30px;
+    height: 30px;
+  }
+  #recommend_activity {
+    display: inline-block;
+    border-bottom: 1px solid gray;
+    padding : 0px 0px 30px 0px;
+    margin-top: 50px;
+  }
+  #recommend_deadline {
+    display: inline-block;
+    border-bottom: 1px solid gray;
+    padding : 0px 0px 30px 0px;
+    margin-top: 50px;
+  }
+  h2 {
+    font-size : 30px;
+    margin : 0px;
+  }

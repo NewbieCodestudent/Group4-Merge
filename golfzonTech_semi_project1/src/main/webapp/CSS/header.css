@@ -1,0 +1,84 @@
+body {
+  width: 1130px;
+  box-sizing: border-box;
+  margin : 0 auto;
+  font-size : 12px;
+  line-height : 16px;
+}
+a:link {
+  color : black;
+  text-decoration-line: none;
+}
+a:visited {
+  color : black;
+  text-decoration-line: none;
+}
+a:hover{
+  color : red;
+  text-decoration-line: underline;
+}
+a:active{
+  color:green;
+  text-decoration-line: none;
+}
+#header {
+  width: 1130;
+  position : relative;
+  background-color: white;
+}
+#header_up {
+  position: relative;
+  height: 160px;
+}
+#logo {
+  position : relative;
+  height: 100%;
+}
+#logo_img {
+  position : relative;
+  top : 28%;
+  left: 1%;
+  margin : 0;
+  width: 120px;
+}
+#account {
+  position : relative;
+  top : -80%;
+  left : 88%;
+  font-size : 15px;
+}
+#header_nav {
+  position : relative;
+  margin : 0 auto;
+  width : 1130px;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+}
+#nav_box {
+  margin : 10px 0px 10px 0px;
+  padding-left : 20px;
+  font-size: 20px;
+  line-height : 30px;
+  color : black;
+  letter-spacing: 7px;
+}
+#header_nav .nav_item {
+  float : left;
+  padding-left : 20px;
+}
+ul {
+  list-style: none;
+}
+li {
+  display : list-item;
+  text-align : -webkit-match-parent;
+}
+#header_nav div {
+  display : block;
+}
+#header_nav #nav_box:after {
+  content : "";
+  display : table;
+  table-layout : fixed;
+  clear : both;
+}

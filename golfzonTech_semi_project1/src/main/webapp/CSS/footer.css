@@ -1,0 +1,39 @@
+#footer {
+  border-top: 1px solid gray;
+  width: 1130px;
+}
+#introduce_box {
+  padding : 20px;
+}
+#title_introduce {
+  padding-left : 20px;
+  margin-bottom : -20px;
+}
+#title_introduce .title {
+  font-size: 17px;
+}
+#introduce_box .introduce .title {
+  float : left;
+  width: 120px;
+  font-size: 15px;
+  line-height: inherit;
+  margin : 0px;
+}
+#introduce_box .introduce+.introduce {
+  margin-top : 10px;
+}
+h3 {
+  display: block;
+}
+#project_story, #project_member {
+  font-size: 14px;
+  line-height: inherit;
+}
+#project_member+#project_member::before {
+  content : "";
+  display : inline-block;
+  width : 1px;
+  height: 11px;
+  background-color: rgb(255, 255, 255);
+  vertical-align: -1px;
+}
