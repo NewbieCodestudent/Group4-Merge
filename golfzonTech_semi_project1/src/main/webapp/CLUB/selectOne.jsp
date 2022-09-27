@@ -6,71 +6,91 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GolfMate</title>
+    <title>GolfMate_모임</title>
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
-    <link rel="stylesheet" href="CSS/clubpage.css">
+    <link rel="stylesheet" href="CSS/club/clubpage.css">
   </head>
   <body>
+     <!-- headarea -->
     <div id="header">
-      <div id="header_up">
-        <div id="logo">
-          <a href="home.do">
-            <img id="logo_img" src="CSS/logo/logo_small.png" alt="logo_img">
-          </a>
-        </div>
-        <div id="account">
-        	${member_id}
-			<c:choose>
-				<c:when test="${member_id == null}">
-					<a href="login.do">로그인</a>
-					<a href="member_join.do">회원가입</a>
-				</c:when>
-				<c:otherwise>
-					<a href="logout.do">로그아웃</a>
-				</c:otherwise>
-			</c:choose>
-        </div>
-      </div>
-      <div id="header_nav">
-        <ul id="nav_box">
-          <li class="nav_item">
-            <a href="club_selectAll.do">모임</a>
-          </li>
-          <li class="nav_item">
-            <a href="액티비티메인페이지">액티비티</a>
-          </li>
-          <li class="nav_item">
-            <a href="이벤트메인페이지">이벤트</a>
-          </li>
-        </ul>
-      </div>
-    </div>
+	    <div id="header_up">
+	      <div id="logo">
+	        <a href="home.do">
+	          <img id="logo_img" src="CSS/logo/logo_small.png" alt="logo_img">
+	        </a>
+	      </div>
+	      <div id="account">
+	        <c:choose>
+	          <c:when test="${member_id == null}">
+	            <a href="login.do">로그인</a>
+	            <a href="member_join.do">
+	              회원가입
+	            </a>
+	            <style>#account {right : 0px;} #account a {padding: 0px 10px;}</style>
+	          </c:when>
+	          <c:otherwise>
+	            ${member_id}님 환영합니다.
+	            <a href="mypage.do?member_id=${member_id}">
+	              <img src="CSS/icon/login.png" alt="mypage" name="mypage" id="mypage" title="마이페이지">
+	            </a>
+	            <a href="logout.do">
+	              <img src="CSS/icon/logout.jpg" alt="logout" name="logout" id="logout" title="로그아웃">
+	            </a>
+	            <style>#account {position:absolute; top:20px; left:900px; width:230px} #account a img {width: 25px; height: 30px; padding: 0px 10px;}</style>
+	          </c:otherwise>
+	        </c:choose>
+	      </div>
+	    </div>
+	    <div id="header_nav">
+	      <ul id="nav_box">
+	        <li class="nav_item">
+	          <a href="club_selectAll.do">모임</a>
+	        </li>
+	        <li class="nav_item">
+	          <a href="activity_selectAll.do">액티비티</a>
+	        </li>
+	        <li class="nav_item">
+	          <a href="event_selectAll.do">이벤트</a>
+	        </li>
+	      </ul>
+	    </div>
+  	</div>
+
+   <!-- main -->
     <div id="container">
         <div id="club_intro_background">
           <div id="club_info">
-            <a href="settin page" title="모임설정" sec:authorize="isleader()"><img src="CSS/icon/setting_icon.png" alt="setting" style="width:30px; margin: 0px; position: absolute; left:97%; top:1%;"></a>
+            <a href="club_update.do?club_id=${param.club_id}" title="모임설정" sec:authorize="isleader()">
+            <img src="CSS/icon/setting_icon.png" alt="setting" style="width:30px; margin: 0px; position: absolute; left:97%; top:1%;" title="모임정보수정">
+            </a>
             <div class="club_box">
+<!--             모임수정 삭제 버튼 -->
+<%--                <a href="club_delete.do?club_id=${param.club_id}">모임삭제</a> --%>
+            <div>
+            <td colspan="3">
+            </td>
+            </div>
               <div id="club_img">
-                <img src="${vo.club_img}" alt="club_img">
+                <img src="upload/${vo2.club_img}" alt="${vo2.club_img}">
               </div>
               <div id="club_leader">
                 <p><strong style="font-size: 18px;">모임장 정보</strong></p>
-                <img src="${vo.img_name}" alt="profill" style="width: 100px; height:100px;"></li>
+                <img src="upload/${vo3.img_name}" alt="${vo3.img_name}" style="width: 100px; height:100px;"></li>
                 <ul id="club_leader_info">
-                  <li>이름 : ${vo.club_leader}</li>
-                  <li>성별 : ${vo.gender}</li>
-                  <li>나이 : ${vo.age}</li>
-                  <li>지역 : ${vo.location}</li>
+                  <li>이름 : ${vo3.name}</li>
+                  <li>성별 : ${vo3.m_gender}</li>
+                  <li>나이 : 만 ${vo3.m_age}세</li>
+                  <li>지역 : ${vo3.m_location}</li>
                 </ul>
               </div>
             </div>
             <div class="club_box" style="left:50px;">
               <div id="club_name">
-                <p>${vo.club_name}</p>
+                <p>${vo2.club_name}</p>
               </div>
               <div id="club_intro">
-                <p style="padding: 15px; margin:0px; font-size: 15px;">모임소개글</p>
+                <p style="padding: 15px; margin:0px; font-size: 15px;">${vo2.club_desc}</p>
               </div>
               <div id="club_vote">
                 <ul style="margin:0px; padding:15px;">
@@ -92,7 +112,7 @@
         <div class="club_content_box">
           <div class="box_title">
             <p>게시글 목록</p>
-            <a href="club_board">more</a>
+            <a href="board_selectAll.do?club_id=${param.club_id}">more</a>
           </div>
           <div class="board">
             <div class="row header green">
@@ -100,30 +120,6 @@
               <div class="cell">제목</div>
               <div class="cell">작성자</div>
               <div class="cell">등록일</div>
-            </div>
-            <div class="row">
-              <div class="cell" data-title="number">5</div>
-              <div class="cell" data-title="title">게시글5</div>
-              <div class="cell" data-title="writer">작성자5</div>
-              <div class="cell" data-title="wdate">등록일</div>
-            </div>
-            <div class="row">
-              <div class="cell" data-title="number">4</div>
-              <div class="cell" data-title="title">게시글4</div>
-              <div class="cell" data-title="writer">작성자4</div>
-              <div class="cell" data-title="wdate">등록일</div>
-            </div>
-            <div class="row">
-              <div class="cell" data-title="number">3</div>
-              <div class="cell" data-title="title">게시글3</div>
-              <div class="cell" data-title="writer">작성자3</div>
-              <div class="cell" data-title="wdate">등록일</div>
-            </div>
-            <div class="row">
-              <div class="cell" data-title="number">2</div>
-              <div class="cell" data-title="title">게시글2</div>
-              <div class="cell" data-title="writer">작성자2</div>
-              <div class="cell" data-title="wdate">등록일</div>
             </div>
             <div class="row">
               <div class="cell" data-title="number">1</div>
@@ -152,6 +148,9 @@
           </div>
         </div>
     </div>
+
+
+   <!-- footerarea -->
     <div id="footer">
       <div id="title_introduce">
         <h3 class="title">[ Project 소개 ]</h3>

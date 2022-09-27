@@ -1,57 +1,69 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
+<html>
+<head>
+	<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GolfMate</title>
+    <title>GolfMate_전체모임</title>
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
-    <link rel="stylesheet" href="CSS/club_all.css">
-  </head>
-  <body>
+    <link rel="stylesheet" href="CSS/club/club_all.css">
+</head>
+<body>
+	<!-- headarea -->
     <div id="header">
-      <div id="header_up">
-        <div id="logo">
-          <a href="home.do">
-            <img id="logo_img" src="CSS/logo/logo_small.png" alt="logo_img">
-          </a>
-        </div>
-        <div id="account">
-        	${member_id}
-			<c:choose>
-				<c:when test="${member_id == null}">
-					<a href="login.do">로그인</a>
-					<a href="member_join.do">회원가입</a>
-				</c:when>
-				<c:otherwise>
-					<a href="logout.do">로그아웃</a>
-				</c:otherwise>
-			</c:choose>
-        </div>
-      </div>
-      <div id="header_nav">
-        <ul id="nav_box">
-          <li class="nav_item">
-            <a href="club_selectAll.do">모임</a>
-          </li>
-          <li class="nav_item">
-            <a href="액티비티메인페이지">액티비티</a>
-          </li>
-          <li class="nav_item">
-            <a href="이벤트메인페이지">이벤트</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div id="container">
+	    <div id="header_up">
+	      <div id="logo">
+	        <a href="home.do">
+	          <img id="logo_img" src="CSS/logo/logo_small.png" alt="logo_img">
+	        </a>
+	      </div>
+	      <div id="account">
+	        <c:choose>
+	          <c:when test="${member_id == null}">
+	            <a href="login.do">로그인</a>
+	            <a href="member_join.do">
+	              회원가입
+	            </a>
+	            <style>#account {right : 0px;} #account a {padding: 0px 10px;}</style>
+	          </c:when>
+	          <c:otherwise>
+	            ${member_id}님 환영합니다.
+	            <a href="mypage.do?member_id=${member_id}">
+	              <img src="CSS/icon/login.png" alt="mypage" name="mypage" id="mypage" title="마이페이지">
+	            </a>
+	            <a href="logout.do">
+	              <img src="CSS/icon/logout.jpg" alt="logout" name="logout" id="logout" title="로그아웃">
+	            </a>
+	            <style>#account {position:absolute; top:20px; left:900px; width:230px} #account a img {width: 25px; height: 30px; padding: 0px 10px;}</style>
+	          </c:otherwise>
+	        </c:choose>
+	      </div>
+	    </div>
+	    <div id="header_nav">
+	      <ul id="nav_box">
+	        <li class="nav_item">
+	          <a href="club_selectAll.do">모임</a>
+	        </li>
+	        <li class="nav_item">
+	          <a href="activity_selectAll.do">액티비티</a>
+	        </li>
+	        <li class="nav_item">
+	          <a href="event_selectAll.do">이벤트</a>
+	        </li>
+	      </ul>
+	    </div>
+  	</div>
+    
+	<div id="container">
       <div id="search_club">
-        상세검색
-        <form action="">
-          <select name="country" id="country" >
-            <option value="">지역</option>
+        searchList
+        <form action="club_searchList.do">
+          <select name="searchKey" id="searchKey" >
+            <option value="location">지역</option>
             <option value="seoul">서울</option>
             <option value="daejeon">대전</option>
             <option value="daegu">대구</option>
@@ -83,37 +95,46 @@
             <option value="m_c_10">모임이름</option>
             <option value="m_c_20">운영자</option>
           </select>
-          <input type="text" name="search_text" id="search_text">
+          <input type="text" name="searchWord" id="searchWord">
           <input type="submit">
         </form>
       </div>
-      <!-- 정렬 버튼 -->
-      <div id="clubSort">
-        <ul id="clubSort_left">
-          <li>최신순</li>
-          <li>제목순</li>
-          <li>가입자수</li>
-        </ul>
-        <ul id="clubSort_right">
-          <li><a>목록</a></li>
-          <li><a>모임개설</a></li>
-        </ul>
-      </div>
-      <!-- 모임출력 -->
-      <div id="club_All">
+      <a href="club_insert.do">모임등록</a>
+      <table border="1">
+		<tr>
+			<th>club_id</th>
+			<th>club_name</th>
+			<th>club_leader</th>
+			<th>개설일</th>
+			<th>모임이미지</th>
+		</tr>
 		<c:forEach var="vo" items="${vos}">
-	        <a class="club_box" href="club_selectOne.do?club_id=${vo.club_id}">
-	          <img class="club_img" src="IMG/CLUB/${vo.club_img}" alt="club">
-	          <strong style="font-size:20px;">${vo.club_name}</strong>
-	          <div style="height:30px; margin:0px;">
-	            <img class="profill_img" src="IMG/MEMBER/profill_2.jpg" class="member_profill" title="member_profill" alt="member_profill">
-	            <div style="display:inline;">
-	              <strong style="font-size:17px;">${vo.club_leader}<br>${vo.cdate}</strong>
-	            </div>
-	          </div>
-	        </a>
+			<tr>
+				<td><a href="club_selectOne.do?club_id=${vo.club_id}">${vo.club_id}</a></td>
+				<td>${vo.club_name}</td>
+				<td>${vo.club_leader}</td>
+				<td>${vo.cdate}</td>
+				<td><img width="50px" alt="${vo.club_name}" src="../upload/club/${vo.club_img}"></td>
+			</tr>
 		</c:forEach>
-      </div>
+	</table>
+      
+<!--       정렬 버튼 -->
+<!--       <div id="clubSort"> -->
+<!--         <ul id="clubSort_left"> -->
+<!--           <li>최신순</li> -->
+<!--           <li>제목순</li> -->
+<!--           <li>가입자수</li> -->
+<!--         </ul> -->
+<!--         <ul id="clubSort_right"> -->
+<!--           <li><a>목록</a></li> -->
+<!--           <li><a>모임개설</a></li> -->
+<!--         </ul> -->
+<!--       </div> -->
+      
+      <!-- selectAll -->
+	
+	
       <!-- 하단 번호 -->
       <div id="club_All_Number">
         <c:if test="${startPage != 1}">
@@ -131,7 +152,8 @@
         </c:if>
       </div>
     </div>
-    <div id="footer">
+	
+	<div id="footer">
       <div id="title_introduce">
         <h3 class="title">[ Project 소개 ]</h3>
       </div>
@@ -154,5 +176,5 @@
         </div>
       </div>
     </div>
-  </body>
+</body>
 </html>

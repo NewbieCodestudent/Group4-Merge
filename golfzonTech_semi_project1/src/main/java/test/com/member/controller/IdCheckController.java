@@ -48,9 +48,9 @@ public class IdCheckController extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 		if (vo2 != null) {
-			out.print("0");
+			out.print("{\"result\" : \"Not OK\"}");
 		} else {
-			out.print("1");
+			out.print("{\"result\" : \"OK\"}");
 		}
 	}
 

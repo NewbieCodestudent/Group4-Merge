@@ -1,13 +1,15 @@
 package test.com.comment.model;
 
+import java.util.List;
+
 public class CommentMain {
 
 	public static void main(String[] args) {
 //		System.out.println("Hello, comment....");
 //		CommentVO vo = new CommentVO();
-//		CommentDAO dao = new CommentDAOimpl();
-//		List<CommentVO> vos = dao.selectAll(5);
-//		System.out.println(vos);
+		CommentDAO dao = new CommentDAOimpl();
+		List<CommentVO> vos = dao.selectAll(5);
+		System.out.println(vos);
 //		BoardVO vo1 = new BoardVO();
 //		vo1.setBoard_id(90);
 //		vo1.setWriter("ADMIN2");

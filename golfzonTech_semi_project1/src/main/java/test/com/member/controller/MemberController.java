@@ -16,9 +16,7 @@ import test.com.member.model.MemberVO;
 /**
  * Servlet implementation class MemberController
  */
-@WebServlet({ "/member_join.do", "/member_joinOK.do", "/member_update.do", "/member_updateOK.do", "/member_delete.do",
-		"/member_deleteOK.do", "/member_selectOne.do", "/member_gender.do", "/member_location.do", "/member_handi.do",
-		"/idCheckpage.do"})
+@WebServlet({ "/member_join.do", "/member_joinOK.do", "/member_selectOne.do", "/member_gender.do", "/member_location.do", "/member_handi.do" })
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private MemberDAO dao = new MemberDAOimpl();
@@ -44,11 +42,7 @@ public class MemberController extends HttpServlet {
 		if (sPath.equals("/member_join.do")) {
 			RequestDispatcher rd = request.getRequestDispatcher("HTML/join.jsp");
 			rd.forward(request, response);
-		} else if (sPath.equals("/idCheckpage.do")) {
-			System.out.println("okokokok");
-			RequestDispatcher rd = request.getRequestDispatcher("HTML/idCheckpage.jsp");
-			rd.forward(request, response);
-		} 
+		}
 
 	}
 
@@ -68,7 +62,6 @@ public class MemberController extends HttpServlet {
 			new JoinOKAction().execute(request, response);
 		}
 
-		doGet(request, response);
 	}
 	
 

@@ -1,12 +1,10 @@
 package test.com.member.model;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 public class MemberDAOimpl implements MemberDAO {
 	private Connection conn;
@@ -230,7 +228,7 @@ public class MemberDAOimpl implements MemberDAO {
 		System.out.println("selectOne()...");
 		System.out.println(vo);
 		
-		MemberVO vo2 = null;
+		MemberVO vo2 = new MemberVO();
 		
 		try {
 			conn = DriverManager.getConnection(MemberDB_oracle.URL, MemberDB_oracle.USER, MemberDB_oracle.PASSWORD);
@@ -239,10 +237,12 @@ public class MemberDAOimpl implements MemberDAO {
 			pstmt.setString(1, vo.getMember_id());
 			rs = pstmt.executeQuery();
 			
-			while (rs.next()) {				
-				vo2 = new MemberVO();
+			while (rs.next()) {			
+				vo2.setMember_id(rs.getString("member_id"));
+				vo2.setPw(rs.getString("pw"));
 				vo2.setName(rs.getString("name"));
-				vo2.setBirthday(rs.getString("birthday"));
+				vo2.setBirthday(rs.getString("birth").split(" ")[0]);
+				vo2.setM_age(rs.getInt("m_age"));
 				vo2.setGender(rs.getString("gender"));
 				vo2.setLocation(rs.getString("location"));
 				vo2.setImg_name(rs.getString("img_name"));
@@ -381,26 +381,57 @@ public class MemberDAOimpl implements MemberDAO {
 		return vo2;
 	}
 
-	@Override
-	public List<String> selectGender() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
-	public List<String> selectLocation() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-//	@Override
-//	public Date stringToDate(MemberVO vo) {
-//		String year = vo.getBirthyy();
-//		String month = vo.getBirthmm();
-//		String day = vo.getBirthdd();
-//		
-//		Date birthday = Date.valueOf(year+"-"+month+"-"+day); 
-//		return birthday;
-//	}
+	public int insertage(MemberVO vo) {
+		System.out.println("insertage()...");
+		System.out.println(vo);
+		
+		int flag = 0;
+		
+		try {
+			conn = DriverManager.getConnection(MemberDB_oracle.URL, MemberDB_oracle.USER, MemberDB_oracle.PASSWORD);
+			System.out.println("conn successed...");
+			
 
+			pstmt = conn.prepareStatement(MemberDB_oracle.SQL_CAL_AGE);
+			
+			pstmt.setString(1, vo.getMember_id());
+			
+			flag = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		} // end finally
+		
+		
+		return flag;
+	}
+
+	
 
 }

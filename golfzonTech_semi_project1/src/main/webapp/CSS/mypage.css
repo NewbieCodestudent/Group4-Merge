@@ -1,0 +1,44 @@
+#container div {
+    position : relative;
+}
+#container {
+    position: relative;
+    width: 1130px;
+    height: 1100px;
+    display: block;
+}
+#mypage_intro_background {
+    background-color: #eae49553;
+    margin: 0px;
+    height: 480px;
+    display: block;
+}
+#my_info_box {
+    background-color: white;
+    width: 1080px;
+    height: 430px;
+    top : 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#profill {
+    width: 300px;
+    height: 350px;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+#my_info>li {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 45px;
+}
+#my_info {
+    padding: 40px;
+}
+#my_info li ul li {
+    font-size: 20px;
+}
+#update_button {
+    position: absolute;
+    left: 95%;
+}

@@ -1,5 +1,6 @@
 package test.com.comment.model;
 
+import java.security.Timestamp;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -153,7 +154,7 @@ public class CommentDAOimpl implements CommentDAO {
 				vo.setBoard_id(rs.getLong("board_id"));
 				vo.setCommenter(rs.getString("commenter"));
 				vo.setComment(rs.getString("content"));
-				vo.setCdate(rs.getDate("cdate"));
+				vo.setCdate(rs.getTimestamp("cdate"));
 				// 정보를 담은 객체를 List<BoardVO>에 저장
 				vos.add(vo);
 			}

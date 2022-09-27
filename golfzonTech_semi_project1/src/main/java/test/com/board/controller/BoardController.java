@@ -26,7 +26,7 @@ import test.com.comment.model.CommentVO;
  * Servlet implementation class BoardController
  */
 @WebServlet({ "/board_insert.do", "/board_insertOK.do", "/board_update.do", "/board_updateOK.do", "/board_delete.do", "/board_deleteOK.do",
-		"/board_selectAll.do", "/board_selectOne.do", "/board_searchListOK.do" })
+		"/board_selectAll.do","/board_selectAll_test.do", "/board_selectOne.do", "/board_searchListOK.do" })
 public class BoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	BoardDAO dao = new BoardDAOimpl();
@@ -49,16 +49,16 @@ public class BoardController extends HttpServlet {
 		System.out.println("doGet(): " + sPath);
 		if (sPath.equals("/board_insert.do")) {
 //			System.out.println(request.getParameter("club_id"));
-			request.getRequestDispatcher("board/insert.jsp").forward(request, response);
+			request.getRequestDispatcher("BOARD/insert.jsp").forward(request, response);
 		} else if (sPath.equals("/board_update.do")) {
 			BoardVO vo = new BoardVO();
 			vo.setBoard_id(Long.parseLong(request.getParameter("board_id")));
 			BoardVO vo1 = dao.selectOne(vo);
 			request.setAttribute("vo1", vo1);
 			System.out.println(vo1);
-			request.getRequestDispatcher("board/update.jsp").forward(request, response);
+			request.getRequestDispatcher("BOARD/update.jsp").forward(request, response);
 		} else if (sPath.equals("/board_delete.do")) {
-			request.getRequestDispatcher("board/delete.jsp").forward(request, response);
+			request.getRequestDispatcher("BOARD/delete.jsp").forward(request, response);
 		} else if (sPath.equals("/board_deleteOK.do")) {
 			String club_id = request.getParameter("club_id");
 			String board_id = request.getParameter("board_id");
@@ -94,7 +94,7 @@ public class BoardController extends HttpServlet {
 			request.setAttribute("vos", vos);
 			System.out.println(vo1);
 			System.out.println(vos);
-			request.getRequestDispatcher("board/selectOne.jsp").forward(request, response);
+			request.getRequestDispatcher("BOARD/selectOne.jsp").forward(request, response);
 		} else if (sPath.equals("/board_selectAll.do")) {
 			// 정렬 기준을 최신순(내림차순으로 설정)
 			// 만약 정렬값 입력 시 입력한 값으로 변경, 입력값 없을 시 desc로 기본 설정
@@ -111,7 +111,41 @@ public class BoardController extends HttpServlet {
 			request.setAttribute("notices", vos_notice);
 			request.setAttribute("commons", vos_common);
 
-			request.getRequestDispatcher("board/selectAll.jsp").forward(request, response);
+			request.getRequestDispatcher("BOARD/selectAll.jsp").forward(request, response);
+		} else if (sPath.equals("/board_selectAll_test.do")) {
+			// 정렬 기준을 최신순(내림차순으로 설정)
+			// 만약 정렬값 입력 시 입력한 값으로 변경, 입력값 없을 시 desc로 기본 설정
+			Long club_id = Long.parseLong(request.getParameter("club_id"));
+			String order = request.getParameter("order") == null ? "desc" : request.getParameter("order");
+			System.out.println("club_id: " + club_id + ", order: " + order);
+			
+			List<BoardVO> vos_notice = dao.selectAll_notice(club_id);
+			List<BoardVO> vos_common = dao.selectAll_common(club_id, order);
+			
+			System.out.println("vos_notice: " + vos_notice);
+			System.out.println("vos_common: " + vos_common);
+			
+			request.setAttribute("notices", vos_notice);
+			request.setAttribute("commons", vos_common);
+			
+			request.getRequestDispatcher("BOARD/selectAll_test.jsp").forward(request, response);
+		} else if (sPath.equals("/board_selectAll.do")) {
+			// 정렬 기준을 최신순(내림차순으로 설정)
+			// 만약 정렬값 입력 시 입력한 값으로 변경, 입력값 없을 시 desc로 기본 설정
+			Long club_id = Long.parseLong(request.getParameter("club_id"));
+			String order = request.getParameter("order") == null ? "desc" : request.getParameter("order");
+			System.out.println("club_id: " + club_id + ", order: " + order);
+			
+			List<BoardVO> vos_notice = dao.selectAll_notice(club_id);
+			List<BoardVO> vos_common = dao.selectAll_common(club_id, order);
+			
+			System.out.println("vos_notice: " + vos_notice);
+			System.out.println("vos_common: " + vos_common);
+			
+			request.setAttribute("notices", vos_notice);
+			request.setAttribute("commons", vos_common);
+			
+			request.getRequestDispatcher("BOARD/selectAll.jsp").forward(request, response);
 		} else if (sPath.equals("/board_searchListOK.do")) {
 			Long club_id = Long.parseLong(request.getParameter("club_id"));
 //			System.out.println("club_id: "+club_id);
@@ -119,7 +153,7 @@ public class BoardController extends HttpServlet {
 			System.out.println(request.getParameter("searchWord"));
 			List<BoardVO> vos = dao.searchList(club_id, request.getParameter("searchKey"), request.getParameter("searchWord"));
 			request.setAttribute("vos", vos);
-			request.getRequestDispatcher("board/searchList.jsp").forward(request, response);
+			request.getRequestDispatcher("BOARD/searchList.jsp").forward(request, response);
 		}
 	}
 
@@ -132,7 +166,7 @@ public class BoardController extends HttpServlet {
 		String sPath = request.getServletPath();
 		System.out.println("doPost(): " + sPath);
 		if (sPath.equals("/board_insertOK.do")) {
-			String dir_path = request.getServletContext().getRealPath("/uploadimg");
+			String dir_path = "C:\\golfzon\\projects\\Group4-Merge\\golfzonTech_semi_project1\\src\\main\\webapp\\upload\\board";
 			System.out.println(dir_path);
 
 			int fileSizeMax = 1024 * 1024 * 100;
@@ -146,7 +180,7 @@ public class BoardController extends HttpServlet {
 				ServletFileUpload sfu = new ServletFileUpload(factory);
 				sfu.setFileSizeMax(fileSizeMax);// 파일 사이즈 제한
 //				System.out.println("club_id: "+request.getParameter("club_id"));
-				long club_id = Long.parseLong(request.getParameter("club_id"));
+				long club_id = 0L;
 				String title = "";
 				String content = "";
 				String writer = "admin1";
@@ -168,6 +202,9 @@ public class BoardController extends HttpServlet {
 //							}
 							if (item.getFieldName().equals("notice")) {
 								notice = Integer.parseInt(item.getString("UTF-8"));
+							}
+							if (item.getFieldName().equals("club_id")) {
+								club_id = Long.parseLong(item.getString("UTF-8"));
 							}
 
 						} else { // file정보받기.
@@ -215,7 +252,7 @@ public class BoardController extends HttpServlet {
 				}
 			} // end if ~ else
 		} else if (sPath.equals("/board_updateOK.do")) {
-			String dir_path = request.getServletContext().getRealPath("/uploadimg");
+			String dir_path = "C:\\golfzon\\projects\\Group4-Merge\\golfzonTech_semi_project1\\src\\main\\webapp\\upload\\board";
 			System.out.println(dir_path);
 			
 			int fileSizeMax = 1024 * 1024 * 100;

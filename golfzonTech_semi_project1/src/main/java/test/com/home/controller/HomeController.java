@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class HomeController
  */
-@WebServlet({"/home.do", "/AD_scr.do"})
+@WebServlet({"/home.do", "/AD_scr.do", "/event_selectAll.do"})
 public class HomeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,7 +33,9 @@ public class HomeController extends HttpServlet {
 			request.getRequestDispatcher("HTML/home.jsp").forward(request, response);
 		} else if (sPath.equals("/AD_scr.do")) {
 			request.getRequestDispatcher("HTML/AD_scr.jsp").forward(request, response);
-		}
+		} else if (sPath.equals("/event_selectAll.do")) {
+			request.getRequestDispatcher("HTML/home.jsp").forward(request, response);
+		} 
 	}
 
 	/**

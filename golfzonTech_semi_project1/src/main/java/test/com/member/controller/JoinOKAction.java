@@ -14,6 +14,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
 
+import test.com.club.model.ClubVO;
 import test.com.member.model.MemberDAO;
 import test.com.member.model.MemberDAOimpl;
 import test.com.member.model.MemberVO;
@@ -80,16 +81,18 @@ public class JoinOKAction {
 //						
 
 						img_name = FilenameUtils.getName(item.getName());
-						if(item.getSize()!=0)
-							img_name = member_id +"_"+img_name;
-						
-						File saveFile = new File(dir_path, img_name);
-						
-						try {
-							item.write(saveFile);
-						} catch (Exception e) {							
-							e.printStackTrace();
+						if(item.getSize()!=0) {
+							img_name = member_id;
+							File saveFile = new File(dir_path, img_name);
+							
+							try {
+								item.write(saveFile);
+							} catch (Exception e) {							
+								e.printStackTrace();
+							}							
 						}
+						
+						
 						
 					}//end else
 
@@ -101,13 +104,13 @@ public class JoinOKAction {
 			}
 			
 		}//end if << isMultipart
-		System.out.println("id:"+member_id);
+		System.out.println("member_id:"+member_id);
 		System.out.println("pw:"+pw);
 		System.out.println("name:"+name);
 		System.out.println("gender:"+gender);
 		System.out.println("birthday:"+birthday);
 		System.out.println("location:"+location);
-		System.out.println("img_name:"+img_name);
+		System.out.println("img_name:"+(img_name.length() == 0 ? "profill.png":img_name));
 		
 		MemberVO vo = new MemberVO();
 		
@@ -117,16 +120,20 @@ public class JoinOKAction {
 		vo.setGender(gender);
 		vo.setBirthday(birthday);
 		vo.setLocation(location);
-		vo.setImg_name(img_name);
-//		vo.setImg_name(img_name.length()==0? "img_0001.png":img_name);
+//		vo.setImg_name(img_name);
+		vo.setImg_name(img_name.length()==0? "profill.png":img_name);
 		
 		MemberDAO dao = new MemberDAOimpl();
 		int result = dao.insert(vo);
 		System.out.println("result:" + result);
 		
-		if(result==1)
+		if(result==1) {
+			int result1 = dao.insertage(vo);
+			System.out.println("result1:" + result1);
 			response.sendRedirect("home.do");
-		else
+			
+			
+		}else
 			response.sendRedirect("member_join.do");
 	}
 

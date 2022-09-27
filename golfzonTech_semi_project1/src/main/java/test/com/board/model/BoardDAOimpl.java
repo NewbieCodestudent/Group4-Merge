@@ -266,6 +266,7 @@ System.out.println("delete()....");
 				vo.setWriter(rs.getString("writer"));
 				vo.setFname(rs.getString("fname"));
 				vo.setWdate(rs.getDate("wdate"));
+				vo.setNotice(rs.getInt("notice"));
 				// 정보를 담은 객체를 List<BoardVO>에 저장
 				vos.add(vo);
 				
@@ -329,6 +330,7 @@ System.out.println("delete()....");
 				vo.setWriter(rs.getString("writer"));
 				vo.setFname(rs.getString("fname"));
 				vo.setWdate(rs.getDate("wdate"));
+				vo.setNotice(rs.getInt("notice"));
 				// 정보를 담은 객체를 List<BoardVO>에 저장
 				vos.add(vo);
 			}

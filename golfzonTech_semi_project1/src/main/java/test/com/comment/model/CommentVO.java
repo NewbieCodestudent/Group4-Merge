@@ -1,6 +1,7 @@
 package test.com.comment.model;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class CommentVO {
@@ -8,13 +9,10 @@ public class CommentVO {
 	private long board_id; // 게시글번호
 	private String comment; // 댓글 내용
 	private String commenter; // 댓글 작성자
-	private Date cdate; // 댓글 작성 일자
+	private Timestamp cdate; // 댓글 작성 일자
 	public CommentVO() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-	public long getComment_id() {
-		return comment_id;
 	}
 	public void setComment_id(long comment_id) {
 		this.comment_id = comment_id;
@@ -37,11 +35,14 @@ public class CommentVO {
 	public void setCommenter(String commenter) {
 		this.commenter = commenter;
 	}
-	public Date getCdate() {
+	public Timestamp getCdate() {
 		return cdate;
 	}
-	public void setCdate(Date cdate) {
+	public void setCdate(Timestamp cdate) {
 		this.cdate = cdate;
+	}
+	public long getComment_id() {
+		return comment_id;
 	}
 	@Override
 	public int hashCode() {

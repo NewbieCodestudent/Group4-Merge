@@ -12,40 +12,52 @@
     <link rel="stylesheet" href="CSS/main_container.css">
   </head>
   <body>
+	<!-- headarea -->
     <div id="header">
-      <div id="header_up">
-        <div id="logo">
-          <a href="home.do">
-            <img id="logo_img" src="CSS/logo/logo_small.png" alt="logo_img">
-          </a>
-        </div>
-        <div id="account">
-        	${member_id}
-			<c:choose>
-				<c:when test="${member_id == null}">
-					<a href="login.do">로그인</a>
-					<a href="member_join.do">회원가입</a>
-				</c:when>
-				<c:otherwise>
-					<a href="logout.do">로그아웃</a>
-				</c:otherwise>
-			</c:choose>
-        </div>
-      </div>
-      <div id="header_nav">
-        <ul id="nav_box">
-          <li class="nav_item">
-            <a href="club_selectAll.do">모임</a>
-          </li>
-          <li class="nav_item">
-            <a href="액티비티메인페이지">액티비티</a>
-          </li>
-          <li class="nav_item">
-            <a href="이벤트메인페이지">이벤트</a>
-          </li>
-        </ul>
-      </div>
-    </div>
+	    <div id="header_up">
+	      <div id="logo">
+	        <a href="home.do">
+	          <img id="logo_img" src="CSS/logo/logo_small.png" alt="logo_img">
+	        </a>
+	      </div>
+	      <div id="account">
+	        <c:choose>
+	          <c:when test="${member_id == null}">
+	            <a href="login.do">로그인</a>
+	            <a href="member_join.do">
+	              회원가입
+	            </a>
+	            <style>#account {right : 0px;} #account a {padding: 0px 10px;}</style>
+	          </c:when>
+	          <c:otherwise>
+	            ${member_id}님 환영합니다.
+	            <a href="mypage.do?member_id=${member_id}">
+	              <img src="CSS/icon/login.png" alt="mypage" name="mypage" id="mypage" title="마이페이지">
+	            </a>
+	            <a href="logout.do">
+	              <img src="CSS/icon/logout.jpg" alt="logout" name="logout" id="logout" title="로그아웃">
+	            </a>
+	            <style>#account {position:absolute; top:20px; left:900px; width:230px} #account a img {width: 25px; height: 30px; padding: 0px 10px;}</style>
+	          </c:otherwise>
+	        </c:choose>
+	      </div>
+	    </div>
+	    <div id="header_nav">
+	      <ul id="nav_box">
+	        <li class="nav_item">
+	          <a href="club_selectAll.do">모임</a>
+	        </li>
+	        <li class="nav_item">
+	          <a href="activity_selectAll.do">액티비티</a>
+	        </li>
+	        <li class="nav_item">
+	          <a href="event_selectAll.do">이벤트</a>
+	        </li>
+	      </ul>
+	    </div>
+  	</div>
+
+	<!-- main -->
     <div id="container">
       <div id="event_ad">
         <iframe style="width: 1070px; height:200px; margin:0px; border:1px solid gray" src="AD_scr.do" scrolling="no">
@@ -226,6 +238,8 @@
         빈공간
       </div>
     </div>
+
+	<!-- footerarea -->
     <div id="footer">
       <div id="title_introduce">
         <h3 class="title">[ Project 소개 ]</h3>

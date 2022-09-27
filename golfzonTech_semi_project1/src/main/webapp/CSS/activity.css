@@ -1,0 +1,77 @@
+#container {
+    position: relative;
+    width: 1130px;
+    height: 1500px;
+    padding: 0px 30px 30px 0px;
+    display: block;
+  }
+  #search_club {
+    background-color: powderblue;
+    height: 200px;
+  }
+  .search_club {
+    display: inline-block;
+    width : 11px;
+    height: 7px;
+  }
+  .club_img {
+    display : inline-block;
+    width: 200px;
+    height: 200px;
+  }
+  .profill_img {
+    width: 30px;
+    height: 30px;
+    border-radius: 70%;
+  }
+  #club_All {
+    display: inline-block;
+  }
+  .club_box {
+    float: left;
+    width: 210px;
+    height: 300px;
+    padding: 8px;
+  }
+  #club_All_Number {
+    position: absolute;
+    bottom: 0px;
+    width: 1130px;
+    padding-bottom: 35px;
+    font-size: 30px;
+    text-align: center;
+  }
+  #clubSort {
+    position: relative;
+    width: 1130px;
+    padding: 20px 0px;
+    height: 30px;
+    font-size: 20px;
+    display: inline-block;
+  }
+  #clubSort ul li {
+    float: left;
+  }
+  #clubSort_left {
+    position: relative;
+    left: -3%;
+  }
+  #clubSort_right {
+    position: relative;
+    top: 0%;
+    left: 65%;
+  }
+  #clubSort_left li::after {
+    content : "";
+    background-color: gray;
+    height: 20px;
+    padding: 1px;
+    margin: 0px 5px;
+  }
+  #clubSort_right li::before {
+    content : "";
+    background-color: gray;
+    height: 20px;
+    padding: 1px;
+    margin: 0px 10px;
+  }

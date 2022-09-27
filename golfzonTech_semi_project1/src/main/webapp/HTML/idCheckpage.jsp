@@ -29,41 +29,57 @@
 	      document.getElementById("member_id").value = opener.document.userInfo.member_id.value;
 	    }
 	  	
-	  	// 아이디 중복체크
-	    function idCheck(){
-	      var id = document.getElementById("member_id").value;
-	      if (!id) {
-	        alert("아이디를 입력하지 않았습니다.");
-	        return false;
-	      }else if((id < "0" || id > "9") && (id < "A" || id > "Z") && (id < "a" || id > "z")){
-	        alert("한글 및 특수문자는 아이디로 사용하실 수 없습니다.");
-	        return false;
-	      }else {
-	        var param="id="+id;
-	        httpRequest = getXMLHttpRequest();
-	        httpRequest.onreadystatechange = callback;
-	        httpRequest.open("POST", "MemberIdCheckAction.do", true);
-	        httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	        httpRequest.send(param);
-	      }
-	    }
-	  	
-	    function callback(){
-	        if(httpRequest.readyState == 4){
-	          // 결과값을 가져온다.
-	          var resultText = httpRequest.responseText;
-	          if(resultText == 0){
-	            alert("사용할수없는 아이디입니다.");
-	            document.getElementById("cancelBtn").style.visibility='visible';
-	            document.getElementById("useBtn").style.visibility='hidden';
-	            document.getElementById("msg").innerHTML ="";
-	          }else if(resultText == 1){
-	            document.getElementById("cancelBtn").style.visibility='hidden';
-	            document.getElementById("useBtn").style.visibility='visible';
-	            document.getElementById("msg").innerHTML = "사용 가능한 아이디입니다.";
-	          }
-	        }
-	    }
+	  	window.onload = funciont() {
+		  	// 중복체크 문구
+			let btn_idCheck = document.querySelector("#btn_idCheck");
+			let result = document.querySelector("#result");
+			//3
+			btn_idCheck.onclick = function(event) {
+				console.log("onclick...");
+				let member_id = document.querySelector("#member_id");
+				// console.log(id);
+				console.log(member_id.value);
+	
+				let req = new XMLHttpRequest();
+	
+				req.addEventListener("load", function() {
+					console.log(this.status);
+					console.log(this.responseText);
+					// {"result":"Not OK"}
+					if (this.status == 200) {
+						try {
+							let txt_json = this.responseText;
+							let obj_json = JSON.parse(txt_json);
+							console.log(obj_json);
+							console.log(obj_json.result);
+	
+							let txt = "";
+	
+							if (obj_json.result == 'Not OK') {
+								txt = "사용중인 아이디 입니다.";
+							} else {
+								txt = "사용가능한 아이디 입니다.";
+							}
+							result.innerHTML = txt;
+						} catch (e) {
+							console.log("json 형식이 아님.");
+						}
+	
+					}//end if
+	
+				});
+	
+				req.open("GET",
+						"http://localhost:8090/golfzonTech_semi_project1/idCheckpage.do?member_id="
+								+ member_id.value);
+	
+				req.send();
+	
+				event.preventDefault();
+				event.stopPropagation();
+	
+			};
+	  	};
 	    
 	  	// 사용하기 클릭 시 부모창으로 값 전달
 	    function sendCheckValue(){
@@ -85,8 +101,8 @@
       <br>
       <div id="chk">
         <form id="checkForm">
-          <input type="text" name="idinput" id="member_id">
-          <input type="button" value="중복확인" onclick="idCheck()">
+          <input type="text" id="member_id" name="member_id">
+          <input type="button" id="btn_idCheck" name="btn_idCheck" value="중복확인"><span id="result"></span>
         </form>
         <div id="msg"></div>
         <br>
