@@ -1,0 +1,60 @@
+#container div {
+    position : relative;
+}
+#container {
+    position: relative;
+    width: 1130px;
+    height: 1100px;
+    display: block;
+}
+#mypage_intro_background {
+    background-color: #eae49553;
+    margin: 0px;
+    height: 550px;
+    display: block;
+}
+#my_info_box {
+    background-color: white;
+    width: 1080px;
+    height: 500px;
+    top : 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#profill {
+    width: 300px;
+    height: 350px;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+#my_info>li {
+    display: inline-block;
+    line-height: 45px;
+}
+#form_box {
+    padding: 20px 0px;
+}
+#my_info {
+    padding: 0px;
+}
+#my_info li ul li {
+    font-size: 20px;
+}
+#update_button {
+    position: absolute;
+    left: 95%;
+}
+#submit_button_design {
+    position: absolute;
+    left: 87%;
+    background-color: rgb(240, 242, 122);
+    border-radius: 5px;
+    width: 90px;
+    height: 10px;
+    padding: 10px;
+    font-size: 15px;
+    margin: 5px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-align: center;
+}

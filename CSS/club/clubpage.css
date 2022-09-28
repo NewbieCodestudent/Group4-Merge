@@ -1,0 +1,130 @@
+#container div {
+    position : relative;
+}
+#container {
+    position: relative;
+    width: 1130px;
+    height: 1100px;
+    display: block;
+}
+#club_intro_background {
+    background-color: #95ea9553;
+    margin: 0px;
+    height: 450px;
+    display: block;
+}
+#club_info {
+    position: relative;
+    background-color: white;
+    width: 1080px;
+    height: 400px;
+    top : 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.club_box {
+    position: relative;
+    display: inline-block;
+    height : 400px;
+    left: 20px;
+}
+#club_img {
+    top: 20px;
+}
+#club_img img {
+    width: 200px;
+    height: 220px;
+    border: 1px solid gray;
+}
+#club_leader {
+    padding: 20px 0px;
+}
+#club_leader_info {
+    position:absolute;
+    padding:0px;
+    width: 100px;
+    left:55%;
+    top:30%;
+    line-height:20px;
+    font-size: 12px;
+}
+#club_name {
+    font-size: 30px;
+}
+#club_intro, #club_vote {
+    width: 550px;
+    height: 135px;
+    margin: 10px 0px;
+    border: 2px solid forestgreen;
+    overflow: auto;
+}
+#club_vote ul li {
+    display: inline;
+}
+#club_member {
+    width: 235px;
+    height: 260px;
+    margin-bottom: 10px;
+    border: 2px solid forestgreen;
+    overflow: auto;
+}
+.club_content_box {
+    position: relative;
+    height: 210px;
+}
+.club_content_box:not(:last-child) {
+    border-bottom: 1px solid black;
+}
+.box_title p {
+    display: inline-block;
+    font-size: 30px;
+    margin: 15px 10px;
+}
+.box_title a {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    font-size: 20px;
+}
+#board {
+    position: relative;
+    padding : 0px 50px;
+    margin-top: 10px;
+}
+#board ul {
+    padding: 0px;
+    margin: 0px;
+}
+.board_cell {
+    display: inline-block;
+    text-align: center;
+    font-size: 18px;
+    height: 20px;
+    border-right: 5px;
+    padding: 5px 0px;
+}
+.activity_img {
+    width: 130px;
+    height: 130px;
+}
+.activity_box>ul>li {
+    display: inline-block;
+    vertical-align: text-top;
+}
+.activity_text li {
+    font-size: 15px;
+    line-height: 25px;
+}
+.activity_box {
+    display: inline-block;
+    border-radius: 5px;
+    padding-right: 25px;
+}
+#activity_box {
+    padding-left: 50px;
+}
+.album_img {
+    width: 200px;
+    height: 150px;
+    padding-left: 30px;
+}

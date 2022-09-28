@@ -1,0 +1,80 @@
+#container {
+    position: relative;
+    height: 1000px;
+  }
+  #club_name_box {
+    position: relative;
+    background-color: rgba(157, 221, 171, 0.648);
+    width: 1130px;
+    height: 140px;
+  }
+  #club_title {
+      position: absolute;
+      background-color: white;
+      width: 1070px;
+      height:80px;
+      margin: 30px;
+  }
+  #club_content {
+    position: relative;
+    width: 1130px;
+    height: 50px;
+    margin: 0px;
+    font-weight: bold;
+    border-bottom: 5px solid blue;
+  }
+  #club_content ul {
+    position: absolute;
+    margin: 15px 0px;
+  }
+  #club_content ul li {
+    display: inline-block;
+    margin: 0px;
+    padding: 0px 10px;
+    font-size: 20px;
+  }
+  #board_content_box {
+    position: relative;
+    width: 1130px;
+  }
+  #board_sort_box {
+    display: inline-block;
+  }
+  #sort_list li {
+    display: inline-block;
+  }
+  #board_sort_title, #board_content {
+    position: relative;
+    left: 2%;
+  }
+  #board_sort_title ul {
+    width: 1065px;
+    padding: 10px;
+  }
+  #board_sort_title li {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    line-height: normal;
+  }
+  #board_content {
+    width: 1100px;
+    height: 600px;
+    overflow: scroll;
+  }
+  .board_content {
+    width: 1065px;
+    padding: 0px 10px;
+    margin: 0px;
+  }
+  .board_content li {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    line-height: normal;
+  }
+  .board_counter {
+    margin: 0%;
+  }

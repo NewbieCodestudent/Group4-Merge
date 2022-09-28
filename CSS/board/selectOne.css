@@ -1,0 +1,142 @@
+#container {
+  position: relative;
+}
+#club_name_box {
+  position: relative;
+  background-color: rgba(157, 221, 171, 0.648);
+  width: 1130px;
+  height: 140px;
+}
+#club_title {
+  position: absolute;
+  background-color: white;
+  width: 1070px;
+  height:80px;
+  margin: 30px;
+}
+#club_content {
+  position: relative;
+  width: 1130px;
+  height: 50px;
+  margin: 0px;
+  font-weight: bold;
+  border-bottom: 5px solid blue;
+}
+#club_content ul {
+  position: absolute;
+  margin: 15px 0px;
+}
+#club_content ul li {
+  display: inline-block;
+  margin: 0px;
+  padding: 0px 10px;
+  font-size: 20px;
+}
+#selectOne_box {
+  position: relative;
+  width: 1130px;
+}
+#update_delete_insert {
+  position: absolute;
+  top: -50px;
+  right: 15px;
+}
+#update_delete_insert ul li {
+  display: inline-block;
+  padding: 5px;
+}
+#update_delete_insert ul li input {
+  width: 60px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 5px;
+  color: white;
+  border: 2px solid gray;
+  background-color: rgba(13, 13, 223, 0.523);
+}
+#selectOne_top {
+  position: relative;
+  margin: auto;
+  margin-top: 60px;
+  width: 1100px;
+  height: 50px;
+  border: 2px solid gray;
+  border-radius: 5px;
+  font-size: 18px;
+}
+#selectOne_top ul li {
+  display: inline-block;
+  text-align: center;
+}
+#selectContent {
+  position: relative;
+  margin: auto;
+  margin-top: 10px;
+  width: 1060px;
+  height: 350px;
+  border: 2px solid gray;
+  border-radius: 5px;
+  overflow: scroll;
+  font-size: 18px;
+  padding: 20px;
+}
+#selectFile {
+  position: relative;
+  margin: 10px 0px 20px 20px;
+  margin-top: 10px;
+  width: 1060px;
+  font-size: 18px;
+}
+#comment_insert {
+  position: relative;
+  padding: 0px 20px;
+}
+#comment {
+  width: 990px;
+  height: 60px;
+  margin-left: 5px;
+  font-size: 18px;
+  border-radius: 5px;
+  border: 2px solid gray;
+  overflow: auto;
+}
+#submit {
+  position: absolute;
+  margin-left: 10px;
+  width: 80px;
+  height: 60px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 5px;
+  color: white;
+  border: 2px solid gray;
+  background-color: rgba(13, 13, 223, 0.523);
+}
+#comment_selectAll {
+  font-size: 18px;
+  margin: auto;
+  padding: 0px;
+  width: 1050px;
+  height: 500px;
+}
+.comment_selectAll_1 {
+  border-bottom: 2px solid gray;
+  padding: 10px 0px;
+  margin-bottom: 10px;
+  margin: 0px;
+}
+#comment_selectAll ul li {
+  position: relative;
+  display: inline;
+}
+#comment_delete {
+  height: 35px;
+  width: 50px;
+  position: absolute;
+  left : 970px;
+  top: 0%;
+  border-radius: 5px;
+  color: white;
+  border: 2px solid gray;
+  background-color: rgba(13, 13, 223, 0.523);
+}
