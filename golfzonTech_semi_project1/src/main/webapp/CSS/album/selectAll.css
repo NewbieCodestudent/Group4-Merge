@@ -1,0 +1,172 @@
+#container {
+    position: relative;
+    height: 1000px;
+  }
+  #club_name_box {
+    position: relative;
+    background-color: rgba(157, 221, 171, 0.648);
+    width: 1130px;
+    height: 140px;
+  }
+  #club_title {
+      position: absolute;
+      background-color: white;
+      width: 1070px;
+      height:80px;
+      margin: 30px;
+  }
+  #club_content {
+    position: relative;
+    width: 1130px;
+    height: 50px;
+    margin: 0px;
+    font-weight: bold;
+    border-bottom: 5px solid blue;
+  }
+  #club_content ul {
+    position: absolute;
+    margin: 15px 0px;
+  }
+  #club_content ul li {
+    display: inline-block;
+    margin: 0px;
+    padding: 0px 10px;
+    font-size: 20px;
+  }
+  #board_content_box {
+    position: relative;
+    width: 1130px;
+  }
+  #board_sort_box {
+    display: inline-block;
+  }
+  #sort_list li {
+    display: inline-block;
+  }
+  .album_img {
+    border: 1px solid gray;
+    border-radius: 5px;
+    width: 200px;
+    height: 200px;
+  }
+  .album_item {
+    display: inline-block;
+    padding: 10px;
+    width: 200px;
+    height: 250px;
+  }
+  .album_text {
+    font-size: 15px;
+    padding-left: 5px;
+  }
+  #album_box> div {
+    display: inline-block;
+  }
+  /* insert, selectOne 부분 */
+  #album_insert ul li {
+    display: inline-block;
+    line-height: 30px;
+  }
+  #album_insert {
+    background-color: white;
+    position: absolute;
+    right: 50px;
+    bottom: 90px;
+    width: 433px;
+    height: 550px;
+    border: 3px solid gray;
+    border-radius: 30px;
+    padding: 30px;
+  }
+  #album_title {
+    width: 430px;
+    height: 50px;
+    border-radius: 5px;
+    font-size: 18px;
+  }
+  #insert_writer{
+    font-size: 18px;
+    font-weight: bold;
+    border: 0px;
+    padding: 10px;
+  }
+  #insert_date{
+    position: absolute;
+    top: 90px;
+    right: 37px;
+    border: 0px;
+    font-size: 18px;
+    width: 140px;
+  }
+  #preview_image {
+    width: 420px;
+    height: 383px;
+    margin: 5px;
+  }
+  #upFile {
+    padding: 10px;
+    font-size: 15px;
+  }
+  .submit {
+    border-radius: 10px;
+    padding: 3px;
+    margin: 5px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  /* selectOne */
+  #selectOne ul li {
+    display: inline-block;
+    line-height: 30px;
+  }
+  #selectOne {
+    background-color: white;
+    position: absolute;
+    right: 50px;
+    bottom: 90px;
+    width: 433px;
+    height: 550px;
+    border: 3px solid gray;
+    border-radius: 30px;
+    padding: 30px;
+  }
+  #selectOne_title {
+    width: 430px;
+    height: 50px;
+    border-radius: 5px;
+    font-size: 18px;
+  }
+  #selectOne_writer{
+    font-size: 18px;
+    font-weight: bold;
+    border: 0px;
+    padding: 10px;
+  }
+  #update_date{
+    position: absolute;
+    top: 90px;
+    right: 37px;
+    border: 0px;
+    font-size: 18px;
+    width: 140px;
+  }
+  #update_image {
+    width: 420px;
+    height: 383px;
+    margin: 5px;
+  }
+  #updateFile {
+    padding: 10px;
+    font-size: 15px;
+  }
+  #update_submit ul li {
+    display: inline-block;
+  }
+  .update_submit {
+    position: absolute;
+    bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+  }
+  

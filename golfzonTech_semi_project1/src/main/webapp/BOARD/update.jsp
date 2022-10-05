@@ -99,7 +99,7 @@
     </div>
     <div id="club_content">
       <ul>
-        <li><a href="board_selectAll.do" style="color:blue;">게시글</a></li>
+        <li><a href="board_selectAll.do?club_id=${param.club_id}" style="color:blue;">게시글</a></li>
         <li><a href="activity_selectAll.do">액티비티</a></li>
         <li><a href="album_selectAll.do">앨범</a></li>
         <li><a href="vote_selectAll.do">투표</a></li>
@@ -107,7 +107,7 @@
     </div>
     <div id="board_content_box">
       <div style="font-size: 20px; font-weight: bold; position:relative; top: 2%; left: 95%;">
-        <a href="board_selectAll.do">목록</a>
+        <a href="board_selectAll.do?club_id=${param.club_id}">목록</a>
       </div>
       <div id="board_update_box">
         <!-- 작성일 출력 -->
@@ -126,9 +126,9 @@
             <option value="0">게시글</option>
             <option value="1">공지</option>
           </select>
-          <input type="text" placeholder="title" id="title" name="title" value="${vo1.title}">
+          <input type="text" placeholder="title" id="title" name="title" value="${vo1.title}" maxlength="25">
           <br>
-          <textarea type="text" id="content" name="content" value="${vo1.content}">${vo1.content}</textarea>
+          <textarea type="text" id="content" name="content" value="${vo1.content}" maxlength="500">${vo1.content}</textarea>
           <!-- <input type="text" placeholder="content" id="content" name="content" value="content"> -->
           <div id="filebox">
             <label for="upFile">업로드</label> 
@@ -138,6 +138,7 @@
           <input id="submit" type="submit" value="수 정">
           <input type="hidden" placeholder="club_id" id="club_id" name="club_id" value="${param.club_id}">
           <input type="hidden" placeholder="board_id" id="board_id" name="board_id" value="${param.board_id}">
+          <input type="hidden" placeholder="club_name" id="club_name" name="club_name" value="${param.club_name}">
         </form>
       </div>
   </div>

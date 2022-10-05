@@ -1,77 +1,103 @@
 #container {
     position: relative;
+    width: 1100px;
+  }
+  /* 검색창 */
+  #search_box {
+    position: relative;
+    background-color: #7ea8d853;
     width: 1130px;
-    height: 1500px;
-    padding: 0px 30px 30px 0px;
-    display: block;
+    height: 330px;
   }
-  #search_club {
-    background-color: powderblue;
-    height: 200px;
-  }
-  .search_club {
-    display: inline-block;
-    width : 11px;
-    height: 7px;
-  }
-  .club_img {
-    display : inline-block;
-    width: 200px;
-    height: 200px;
-  }
-  .profill_img {
-    width: 30px;
-    height: 30px;
-    border-radius: 70%;
-  }
-  #club_All {
-    display: inline-block;
-  }
-  .club_box {
-    float: left;
-    width: 210px;
-    height: 300px;
-    padding: 8px;
-  }
-  #club_All_Number {
+  #seachList_box {
     position: absolute;
-    bottom: 0px;
-    width: 1130px;
-    padding-bottom: 35px;
+    background-color: white;
+    width: 1070px;
+    height: 270px;
+    margin: 30px;
+  }
+  #seachList_box>p {
     font-size: 30px;
-    text-align: center;
+    margin: 30px 0px 45px 15px;
   }
-  #clubSort {
+  /* 액티비티조건창 */
+  #activity_searchList {
     position: relative;
-    width: 1130px;
-    padding: 20px 0px;
-    height: 30px;
+    margin: 30px 40px;
+  }
+  #seachList_box select, input {
+    border-radius: 5px;
+    border: 2px solid gray;
     font-size: 20px;
+    text-align: center;
+    height: 30px;
+  }
+  #location, #age, #gender {
+    margin: 0px 15px 15px 0px;
+    width: 200px;
+  }
+  #search_select {
+    width: 150px;
+  }
+  #searchWord {
+    width: 300px;
+  }
+  #submit, #reset {
+    position: absolute;
+    background-color: #6b7bdb53;
+    font-size: 18px;
+    width: 80px;
+    bottom: -40px
+  }
+  #submit {
+    right: 0px;
+  }
+  #reset {
+    right: 100px;
+  }
+  #sort_list li {
     display: inline-block;
+    font-size: 15px;
+    font-weight: bold;
   }
-  #clubSort ul li {
-    float: left;
-  }
-  #clubSort_left {
+/* selectALL 내용 CSS */
+  .selectAll_container {
     position: relative;
-    left: -3%;
+    padding:10px 6px;
+    height: 730px;
+    overflow:auto;
   }
-  #clubSort_right {
+  .selectAll_box {
+    display: inline-block;
+    border: 2px solid gray;
+    border-radius: 5px;
+    width: 185px;
+    height: 220px;
+    margin: 10px;
+    font-size: 15px;
+    line-height: 18px;
+  }
+  .selectAll_box ul {
+    border: 0px;
+    padding: 0px;
+  }
+  .selectAll_box ul li {
+    font-size: 13px;
+  }
+  .selectAll_img {
+    width: 185px;
+    height:100px;
+  }
+  .selectAll_profill {
+    padding-top: 5px;
+    border-radius: 70%;
+    width : 30px;
+    height: 30px;
+  }
+  /* 하단 번호 CSS */
+  #All_Number {
     position: relative;
-    top: 0%;
-    left: 65%;
-  }
-  #clubSort_left li::after {
-    content : "";
-    background-color: gray;
-    height: 20px;
-    padding: 1px;
-    margin: 0px 5px;
-  }
-  #clubSort_right li::before {
-    content : "";
-    background-color: gray;
-    height: 20px;
-    padding: 1px;
-    margin: 0px 10px;
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 20px;
   }

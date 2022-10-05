@@ -9,13 +9,13 @@
     <title>GolfMate_개인정보수정</title>
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
-    <link rel="stylesheet" href="CSS/mypage_update.css">
+    <link rel="stylesheet" href="CSS/mypage/mypage_update.css">
     <script>
       function checkValue() {
         var form = document.mypage_updateOK;
 
         // 비밀번호와 비밀번호 확인이 동일한지 확인하는 코드
-        if(form.password.value != form.passwordcheck.value) {
+        if(form.pw.value != form.pwcheck.value) {
           alert("변경하는 비밀번호가 다릅니다.");
           return false;
         }
@@ -32,7 +32,7 @@
     </script>
   </head>
   <body>
-    <!-- header 영역 -->
+    <!-- headarea -->
     <div id="header">
 	    <div id="header_up">
 	      <div id="logo">
@@ -50,14 +50,15 @@
 	            <style>#account {right : 0px;} #account a {padding: 0px 10px;}</style>
 	          </c:when>
 	          <c:otherwise>
-	            ${member_id}님 환영합니다.
 	            <a href="mypage.do?member_id=${member_id}">
 	              <img src="CSS/icon/login.png" alt="mypage" name="mypage" id="mypage" title="마이페이지">
 	            </a>
 	            <a href="logout.do">
 	              <img src="CSS/icon/logout.jpg" alt="logout" name="logout" id="logout" title="로그아웃">
 	            </a>
-	            <style>#account {position:absolute; top:20px; left:900px; width:230px} #account a img {width: 25px; height: 30px; padding: 0px 10px;}</style>
+	            <br>
+	            ${member_id}님 환영합니다.
+	            <style>#account {position:absolute; text-align:right; right:0px; line-height: 20px;} #account a img {width: 25px; height: 30px; padding: 0px 13px;}</style>
 	          </c:otherwise>
 	        </c:choose>
 	      </div>
@@ -94,6 +95,28 @@
                       <label for="upFile">프로필사진</label>
                       <input type="File" id="upFile" name="upFile" onchange="fileUpload()" value="upload/${vo2.img_name}" multiple>
                     </li>
+                    <script>
+		            function readImage(input) {
+		              // 인풋 태그에 파일이 있는 경우
+		              if(input.files && input.files[0]) {
+		                  // 이미지 파일인지 검사 (생략)
+		                  // FileReader 인스턴스 생성
+		                  const reader = new FileReader()
+		                  // 이미지가 로드가 된 경우
+		                  reader.onload = e => {
+		                      const previewImage = document.getElementById("profill")
+		                      previewImage.src = e.target.result
+		                  }
+		                  // reader가 이미지 읽도록 하기
+		                  reader.readAsDataURL(input.files[0])
+		              	}
+		          	}
+		          	// input file에 change 이벤트 부여
+		          	const inputImage = document.getElementById("upFile")
+	          		inputImage.addEventListener("change", e => {
+	              	readImage(e.target)
+		          	})
+		          	</script>
                   </ul>
                 </li>
                 <li>
@@ -133,10 +156,8 @@
             </form>
           </div>
         </div>
-        <div class="club_content_box">
-          <div>
-            <input type="button" value="탈퇴" onclick="doAction()">
-          </div>
+        <div>
+          <input id="Golf_Mate_bye" type="button" value="탈퇴" onclick="doAction()">
         </div>
     </div>
 

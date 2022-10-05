@@ -31,14 +31,15 @@
 	            <style>#account {right : 0px;} #account a {padding: 0px 10px;}</style>
 	          </c:when>
 	          <c:otherwise>
-	            ${member_id}님 환영합니다.
 	            <a href="mypage.do?member_id=${member_id}">
 	              <img src="CSS/icon/login.png" alt="mypage" name="mypage" id="mypage" title="마이페이지">
 	            </a>
 	            <a href="logout.do">
 	              <img src="CSS/icon/logout.jpg" alt="logout" name="logout" id="logout" title="로그아웃">
 	            </a>
-	            <style>#account {position:absolute; top:20px; left:900px; width:230px} #account a img {width: 25px; height: 30px; padding: 0px 10px;}</style>
+	            <br>
+	            ${member_id}님 환영합니다.
+	            <style>#account {position:absolute; text-align:right; right:0px; line-height: 20px;} #account a img {width: 25px; height: 30px; padding: 0px 13px;}</style>
 	          </c:otherwise>
 	        </c:choose>
 	      </div>
@@ -46,7 +47,7 @@
 	    <div id="header_nav">
 	      <ul id="nav_box">
 	        <li class="nav_item">
-	          <a href="club_selectAll.do">모임</a>
+	          <a href="club_selectAll.do?order=desc">모임</a>
 	        </li>
 	        <li class="nav_item">
 	          <a href="activity_selectAll.do">액티비티</a>
@@ -58,83 +59,88 @@
 	    </div>
   	</div>
     
+    <!-- main -->
 	<div id="container">
-      <div id="search_club">
-        searchList
-        <form action="club_searchList.do">
-          <select name="searchKey" id="searchKey" >
-            <option value="location">지역</option>
-            <option value="seoul">서울</option>
-            <option value="daejeon">대전</option>
-            <option value="daegu">대구</option>
-            <option value="bussan">부산</option>
+    <div id="search_box">
+      <div id="seachList_box">
+        <p id="club_count">모 임(000)</p>
+        <form action="club_searchList.do?club_id=${param.club_id}" id="club_searchList" name="club_searchList" method="get">
+          <p style="font-size: 20px;">상세검색</p>
+          <select name="location" id="location" >
+            <option value="무관">지역</option>
+            <option value="서울">서울</option>
+            <option value="경기">경기</option>
+            <option value="강원">강원</option>
+            <option value="전북">전북</option>
+            <option value="전남">전남</option>
+            <option value="경북">경북</option>
+            <option value="경남">경남</option>
+            <option value="충북">충북</option>
+            <option value="충남">충남</option>
+            <option value="제주">제주</option>
+            <option value="대전">대전</option>
+            <option value="인천">인천</option>
+            <option value="광주">광주</option>
+            <option value="대구">대구</option>
+            <option value="부신">부산</option>
           </select>
           <select name="age" id="age">
-            <option value="">나이</option>
-            <option value="teenage">10대</option>
-            <option value="twenty">20대</option>
-            <option value="thirty">30대</option>
-            <option value="forty">40대</option>
-            <option value="fifty">50대</option>
+            <option value="0">나이</option>
+            <option value="10">10대</option>
+            <option value="20">20대</option>
+            <option value="30">30대</option>
+            <option value="40">40대</option>
+            <option value="50">50대</option>
+            <option value="60">60대이상</option>
           </select>
-          <select name="male_female" id="male_female">
-            <option value="">성별</option>
-            <option value="male">남자</option>
-            <option value="female">여자</option>
+          <select name="gender" id="gender">
+            <option value="무관">성별</option>
+            <option value="남">남자</option>
+            <option value="여">여자</option>
           </select>
-          <select name="member_count" id="member_count">
-            <option value="">가입자수</option>
-            <option value="m_c_10">10명 이상</option>
-            <option value="m_c_20">20명 이상</option>
-            <option value="m_c_30">30명 이상</option>
-            <option value="m_c_40">40명 이상</option>
-            <option value="m_c_50">50명 이상</option>
-          </select>
-          <select name="search_select" id="search_select">
+         
+          <br>
+          <select name="searchKey" id="searchKey">
             <option value="">검색영역</option>
-            <option value="m_c_10">모임이름</option>
-            <option value="m_c_20">운영자</option>
+            <option value="club_name">모임이름</option>
+            <option value="club_leader">운영자</option>
           </select>
           <input type="text" name="searchWord" id="searchWord">
-          <input type="submit">
+          <input type="reset" id="reset" value="초기화">
+          <input type="submit" id="submit" value="검 색">
         </form>
       </div>
-      <a href="club_insert.do">모임등록</a>
-      <table border="1">
-		<tr>
-			<th>club_id</th>
-			<th>club_name</th>
-			<th>club_leader</th>
-			<th>개설일</th>
-			<th>모임이미지</th>
-		</tr>
-		<c:forEach var="vo" items="${vos}">
-			<tr>
-				<td><a href="club_selectOne.do?club_id=${vo.club_id}">${vo.club_id}</a></td>
-				<td>${vo.club_name}</td>
-				<td>${vo.club_leader}</td>
-				<td>${vo.cdate}</td>
-				<td><img width="50px" alt="${vo.club_name}" src="../upload/club/${vo.club_img}"></td>
-			</tr>
-		</c:forEach>
-	</table>
-      
-<!--       정렬 버튼 -->
-<!--       <div id="clubSort"> -->
-<!--         <ul id="clubSort_left"> -->
-<!--           <li>최신순</li> -->
-<!--           <li>제목순</li> -->
-<!--           <li>가입자수</li> -->
-<!--         </ul> -->
-<!--         <ul id="clubSort_right"> -->
-<!--           <li><a>목록</a></li> -->
-<!--           <li><a>모임개설</a></li> -->
-<!--         </ul> -->
-<!--       </div> -->
-      
-      <!-- selectAll -->
-	
-	
+    </div>
+    <!-- 정렬버튼 -->
+    <div style="position: relative; font-size:15px;">
+      <ul id="sort_list" style="padding-left: 20px; margin: 30px 0px 0px 0px;">
+        <li>작성일기준 |</li>
+        <li><a href="club_selectAll.do?order=desc">내림차순</a></li>
+        <li><a href="club_selectAll.do?order=asc">오름차순</a></li>
+      </ul>
+      <ul style="position:absolute; bottom:-15px; right: 15px;">
+        <li><a href="club_insert.do" style="font-size: 18px;">모임개설</a></li>
+      </ul>
+    </div>
+    <!-- selectAll -->
+	<div class="selectAll_container">
+      <c:forEach var="vo" items="${vos}">
+        <div class="selectAll_box">
+          <ul>
+            <a href="club_selectOne.do?club_id=${vo.club_id}&club_name=${vo.club_name}">
+              <li><img class="selectAll_img" alt="${vo.club_name}" src="upload/${vo.club_img}"></li>
+              <li class="selectAll_name">모임명 : ${vo.club_name}</li>
+              <li class="selectAll_leader">
+              	<img class="selectAll_profill" src="upload/${vo.img_name}" title="member_profill" alt="member_profill">
+              	${vo.club_leader}
+              </li>
+              <li class="selectAll_cdate">개설일 : ${vo.cdate}</li>
+              <li class="selectAll_id" style="display:none;">${vo.club_id}</li>
+            </a>
+          </ul>
+        </div>
+      </c:forEach>
+    </div>
       <!-- 하단 번호 -->
       <div id="club_All_Number">
         <c:if test="${startPage != 1}">
@@ -152,7 +158,14 @@
         </c:if>
       </div>
     </div>
+    <script>
+    	let club_count_src = document.getElementsByClassName('selectAll_id');
+    	let club_count = document.getElementById('club_count');
+    	club_count.innerText = "모 임(총 "+club_count_src.length+"개)"; 
+    	
+    </script>
 	
+  <!-- footer -->
 	<div id="footer">
       <div id="title_introduce">
         <h3 class="title">[ Project 소개 ]</h3>

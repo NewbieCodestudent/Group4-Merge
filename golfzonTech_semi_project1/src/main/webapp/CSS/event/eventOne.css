@@ -1,0 +1,57 @@
+#container div {
+    position : relative;
+}
+#container {
+    position: relative;
+    width: 1130px;
+    display: block;
+}
+#event_info_box {
+    background-color: white;
+    width: 1130px;
+}
+#event_title {
+    padding: 20px 20px;
+    border-bottom: 10px solid rgb(163, 103, 219);
+}
+#event_title ul {
+    padding: 0px;
+}
+#event_title li:first-child {
+    font-size: 30px;
+    font-weight: bold;
+}
+#event_title ul li:not(:first-child) {
+    position: absolute;
+    display: inline-block;
+    bottom: 23px;
+    font-size: 18px;
+}
+#event_list {
+    right : 155px
+}
+#event_ing_ed {
+    right: 15px;
+}
+#event_sort ul {
+    padding: 10px 20px;
+}
+#event_sort li {
+    display: inline-block;
+    font-weight: bold;
+}
+#event_name {
+    font-size: 25px;
+}
+#event_date {
+    position: absolute;
+    font-size: 20px;
+    right: 15px;
+}
+#event_main {
+    padding: 20px 20px 30px 20px;
+    width: 1130px;
+}
+#event_img {
+    width: 95%;
+}

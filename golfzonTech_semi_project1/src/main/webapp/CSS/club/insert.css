@@ -1,0 +1,89 @@
+#container {
+  position: relative;
+  height: 1100px;
+}
+#insert_box {
+  position: relative;
+  background-color: #95ea9553;
+  width: 1130px;
+  height: 1000px;
+}
+#insert_form {
+  position: absolute;
+  background-color: white;
+  width: 1030px;
+  height: 920px;
+  margin: 30px;
+  padding: 10px 20px;
+}
+#insert_form>p {
+  font-size: 30px;
+  margin-bottom: 50px;
+}
+#club_insert {
+  padding: 10px 20px;
+}
+#club_insert p {
+  font-size: 25px;
+}
+#club_insert select, #club_name {
+  font-size: 25px;
+  height: 40px;
+  margin-right: 5px;
+  border-radius: 5px;
+  border: 2px solid gray;
+}
+#preview_image {
+  width: 280px;
+  height: 280px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid gray;
+}
+#close_name input {
+  width: 400px;
+}
+#imgViewArea ul {
+  padding: 10px 0px;
+}
+#upFile {
+  padding-top: 3px;
+  width: 300px;
+  font-size: 15px;
+  height: 30px;
+  border: 0px;
+}
+#imgViewArea ul li {
+  display: inline-block;
+  vertical-align: text-top;
+}
+#club_desc {
+  margin: 0px 0px 0px 10px;
+  border: 2px solid gray;
+  border-radius: 5px;
+  width: 640px;
+  height: 305px;
+  font-size: 30px;
+  padding: 10px;
+  overflow: scroll;
+  resize: none;
+}
+#club_condition select {
+  width: 100px;
+}
+#club_condition p {
+  font-size: 20px;
+  display: inline-block;
+  padding-right: 10px;
+}
+#submit {
+  position: absolute;
+  width: 100px;
+  height: 50px;
+  font-size: 20px;
+  background-color: #95ea9553;
+  border-radius: 5px;
+  border: 2px solid gray;
+  right: 20px;
+  bottom: 30px;
+}

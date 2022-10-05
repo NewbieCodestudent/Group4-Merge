@@ -30,76 +30,63 @@
 </head>
 <body>
 	<!-- headarea -->
-  <div id="header">
-	    <div id="header_up">
-	      <div id="logo">
-	        <a href="home.do">
-	          <img id="logo_img" src="CSS/logo/logo_small.png" alt="logo_img">
-	        </a>
-	      </div>
-	      <div id="account">
-	        <c:choose>
-	          <c:when test="${member_id == null}">
-	            <a href="login.do">로그인</a>
-	            <a href="member_join.do">
-	              회원가입
-	            </a>
-	            <style>#account {right : 0px;} #account a {padding: 0px 10px;}</style>
-	          </c:when>
-	          <c:otherwise>
-	            ${member_id}님 환영합니다.
-	            <a href="mypage.do?member_id=${member_id}">
-	              <img src="CSS/icon/login.png" alt="mypage" name="mypage" id="mypage" title="마이페이지">
-	            </a>
-	            <a href="logout.do">
-	              <img src="CSS/icon/logout.jpg" alt="logout" name="logout" id="logout" title="로그아웃">
-	            </a>
-	            <style>#account {position:absolute; top:20px; left:900px; width:230px} #account a img {width: 25px; height: 30px; padding: 0px 10px;}</style>
-	          </c:otherwise>
-	        </c:choose>
-	      </div>
-	    </div>
-	    <div id="header_nav">
-	      <ul id="nav_box">
-	        <li class="nav_item">
-	          <a href="club_selectAll.do">모임</a>
-	        </li>
-	        <li class="nav_item">
-	          <a href="activity_selectAll.do">액티비티</a>
-	        </li>
-	        <li class="nav_item">
-	          <a href="event_selectAll.do">이벤트</a>
-	        </li>
-	      </ul>
-	    </div>
-  	</div>
+    <div id="header">
+       <div id="header_up">
+         <div id="logo">
+           <a href="home.do">
+             <img id="logo_img" src="CSS/logo/logo_small.png" alt="logo_img">
+           </a>
+         </div>
+         <div id="account">
+           <c:choose>
+             <c:when test="${member_id == null}">
+               <a href="login.do">로그인</a>
+               <a href="member_join.do">
+                 회원가입
+               </a>
+               <style>#account {right : 0px;} #account a {padding: 0px 10px;}</style>
+             </c:when>
+             <c:otherwise>
+               <a href="mypage.do?member_id=${member_id}">
+                 <img src="CSS/icon/login.png" alt="mypage" name="mypage" id="mypage" title="마이페이지">
+               </a>
+               <a href="logout.do">
+                 <img src="CSS/icon/logout.jpg" alt="logout" name="logout" id="logout" title="로그아웃">
+               </a>
+               <br>
+               ${member_id}님 환영합니다.
+               <style>#account {position:absolute; text-align:right; right:0px; line-height: 20px;} #account a img {width: 25px; height: 30px; padding: 0px 13px;}</style>
+             </c:otherwise>
+           </c:choose>
+         </div>
+       </div>
+       <div id="header_nav">
+         <ul id="nav_box">
+           <li class="nav_item">
+             <a href="club_selectAll.do">모임</a>
+           </li>
+           <li class="nav_item">
+             <a href="activity_selectAll.do">액티비티</a>
+           </li>
+           <li class="nav_item">
+             <a href="event_selectAll.do">이벤트</a>
+           </li>
+         </ul>
+       </div>
+     </div>
 
   <!-- container 영역 -->
   <div id="container">
     <div id="club_name_box">
       <div id="club_title">
         <p style="font-size: 30px; padding-left: 30px;">
-            <!-- 모집중, 모집마감 변수 설정 구역 -->
-            <strong id="var">
-                <script>
-                    // 변수 var = 모집관련 boolean
-                    var club_id = 0;
-                    if(club_id == 0) {
-                        document.write("모집중");
-                        document.getElementById('var').style.color = "blue";
-                    } else if(club_id == 1) {
-                        document.write("모집마감");
-                        document.getElementById('var').style.color = "red";
-                    }
-                </script>
-            </strong>
-            <strong>club_name</strong>
+            <strong>${param.club_name}</strong>
         </p>
       </div>
     </div>
     <div id="club_content">
       <ul>
-        <li><a href="board_selectAll.do" style="color:blue;">게시글</a></li>
+        <li><a href="board_selectAll.do?club_id=${param.club_id}" style="color:blue;">게시글</a></li>
         <li><a href="activity_selectAll.do">액티비티</a></li>
         <li><a href="album_selectAll.do">앨범</a></li>
         <li><a href="vote_selectAll.do">투표</a></li>
@@ -124,11 +111,18 @@
         <form action="board_insertOK.do" method="post" enctype="multipart/form-data">
           <select name="notice" id="notice">
             <option value="0">게시글</option>
-            <option value="1">공지</option>
+            <option id="notice_leader" value="1">공지</option>
+            <script>
+            	let isLeader = "${isLeader}";
+            	console.log(isLeader);
+            	if(isLeader == "false") {
+            		document.getElementById('notice_leader').setAttribute('hidden','hidden');
+            	}
+            </script>
           </select>
-          <input type="text" placeholder="title" id="title" name="title" value="title1">
+          <input type="text" placeholder="title" id="title" name="title" value="title1" maxlength="25">
           <br>
-          <textarea type="text" placeholder="content" id="content" name="content" value="content"></textarea>
+          <textarea type="text" placeholder="content" id="content" name="content" value="content" maxlength="500"></textarea>
           <!-- <input type="text" placeholder="content" id="content" name="content" value="content"> -->
           <div id="filebox">
             <label for="upFile">업로드</label> 
@@ -136,6 +130,7 @@
             <p id="upFileName">파일이름</p>
           </div>
           <input type="hidden" value="${param.club_id}" name="club_id">
+          <input type="hidden" value="${param.club_name}" name="club_name">
           <input id="submit" type="submit" value="등 록">
         </form>
       </div>

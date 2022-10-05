@@ -10,12 +10,11 @@
     <title>GolfMate_모임개설</title>
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
+    <link rel="stylesheet" href="CSS/club/insert.css">
 </head>
 <body>
-	<h1>모임개설</h1>
-
-     <!-- headarea -->
-	<div id="header">
+    <!-- headarea -->
+    <div id="header">
 	    <div id="header_up">
 	      <div id="logo">
 	        <a href="home.do">
@@ -32,14 +31,15 @@
 	            <style>#account {right : 0px;} #account a {padding: 0px 10px;}</style>
 	          </c:when>
 	          <c:otherwise>
-	            ${member_id}님 환영합니다.
 	            <a href="mypage.do?member_id=${member_id}">
 	              <img src="CSS/icon/login.png" alt="mypage" name="mypage" id="mypage" title="마이페이지">
 	            </a>
 	            <a href="logout.do">
 	              <img src="CSS/icon/logout.jpg" alt="logout" name="logout" id="logout" title="로그아웃">
 	            </a>
-	            <style>#account {position:absolute; top:20px; left:900px; width:230px} #account a img {width: 25px; height: 30px; padding: 0px 10px;}</style>
+	            <br>
+	            ${member_id}님 환영합니다.
+	            <style>#account {position:absolute; text-align:right; right:0px; line-height: 20px;} #account a img {width: 25px; height: 30px; padding: 0px 13px;}</style>
 	          </c:otherwise>
 	        </c:choose>
 	      </div>
@@ -60,137 +60,107 @@
   	</div>
     
 	<div id="container">
-      <div id="search_club">
-        searchList
-        <form action="club_searchList.do">
-          <select name="searchKey" id="searchKey" >
-            <option value="location">지역</option>
-            <option value="seoul">서울</option>
-            <option value="daejeon">대전</option>
-            <option value="daegu">대구</option>
-            <option value="bussan">부산</option>
-          </select>
-          <select name="age" id="age">
-            <option value="">나이</option>
-            <option value="teenage">10대</option>
-            <option value="twenty">20대</option>
-            <option value="thirty">30대</option>
-            <option value="forty">40대</option>
-            <option value="fifty">50대</option>
-          </select>
-          <select name="male_female" id="male_female">
-            <option value="">성별</option>
-            <option value="male">남자</option>
-            <option value="female">여자</option>
-          </select>
-          <select name="member_count" id="member_count">
-            <option value="">가입자수</option>
-            <option value="m_c_10">10명 이상</option>
-            <option value="m_c_20">20명 이상</option>
-            <option value="m_c_30">30명 이상</option>
-            <option value="m_c_40">40명 이상</option>
-            <option value="m_c_50">50명 이상</option>
-          </select>
-          <select name="search_select" id="search_select">
-            <option value="">검색영역</option>
-            <option value="m_c_10">모임이름</option>
-            <option value="m_c_20">운영자</option>
-          </select>
-          <input type="text" name="searchWord" id="searchWord">
-          <input type="submit">
+    <!-- insert -->
+    <div id="insert_box">
+      <div id="insert_form">
+        <p>[ ${member_id}님의 모임개설 ]</p>
+        <form action="club_insertOK.do" method="post" enctype="multipart/form-data" id="club_insert">
+          <div id="close_name">
+            <select id="close" name="close">
+              <option value="0">공개</option>
+              <option value="1">비공개</option>
+            </select>
+            <input type="text" placeholder="모임이름을 작성해주세요." id="club_name" name="club_name" maxlength="25">
+          </div>
+          <div id="imgViewArea">
+            <ul>
+              <li>
+                <p>[ 대표 이미지 ]</p>
+                <img id="preview_image" src="CSS/icon/golfclub.png"><br>
+                <input type="file" id="upFile" name="upFile">
+              </li>
+              <li>
+                <p>[ 모임 소개글 ]</p>
+                <textarea  id="club_desc" name="club_desc" placeholder="우리 모임은..." maxlength="500"></textarea>
+              </li>
+            </ul>
+          </div>
+          <script>
+            function readImage(input) {
+              // 인풋 태그에 파일이 있는 경우
+              if(input.files && input.files[0]) {
+                  // 이미지 파일인지 검사 (생략)
+                  // FileReader 인스턴스 생성
+                  const reader = new FileReader()
+                  // 이미지가 로드가 된 경우
+                  reader.onload = e => {
+                      const previewImage = document.getElementById("preview_image")
+                      previewImage.src = e.target.result
+                  }
+                  // reader가 이미지 읽도록 하기
+                  reader.readAsDataURL(input.files[0])
+              }
+          }
+          // input file에 change 이벤트 부여
+          const inputImage = document.getElementById("upFile")
+          inputImage.addEventListener("change", e => {
+              readImage(e.target)
+          })
+          </script>
+          <input type="hidden" placeholder="모임장명" id="club_leader" name="club_leader" value="${member_id}">
+          <p style="font-size: 25px;">[ 가입조건설정 ]</p>
+          <div id="club_condition">
+            <ul>
+              <li>
+                <p>성별 : </p>
+                <select name="gender" id="gender">
+                  <option value="무관">무관</option>
+                  <option value="남">남</option>
+                  <option value="여">여</option>
+                </select>
+              </li>
+              <li>
+                <p>나이 : </p>
+                <select name="age" id="age">
+                  <option value="0">무관</option>
+                  <option value="10">10대</option>
+                  <option value="20">20대</option>
+                  <option value="30">30대</option>
+                  <option value="40">40대</option>
+                  <option value="50">50대</option>
+                  <option value="60">60대이상</option>
+                </select>
+              </li>
+              <li>
+                <p>지역 : </p>
+                <select name="location" id="location">
+                  <option value="무관">무관</option>
+                  <option value="서울">서울</option>
+                  <option value="경기">경기</option>
+                  <option value="강원">강원</option>
+                  <option value="전북">전북</option>
+                  <option value="전남">전남</option>
+                  <option value="경북">경북</option>
+                  <option value="경남">경남</option>
+                  <option value="충북">충북</option>
+                  <option value="충남">충남</option>
+                  <option value="제주">제주</option>
+                  <option value="대전">대전</option>
+                  <option value="대전">인천</option>
+                  <option value="광주">광주</option>
+                  <option value="대구">대구</option>
+                  <option value="부신">부산</option>
+                </select>
+              </li>
+            </ul>
+          </div>
+          <input type="submit" value="모임개설" id="submit">
         </form>
       </div>
-      
-           <!-- insert -->
-      <form action="club_insertOK.do" method="post" enctype="multipart/form-data">
- 
-      <table>
-         <tbody>
-            <tr>
-               <td><label for="club_name">모임명:</label></td>
-               <td><input type="text" placeholder="제목" id="club_name" name="club_name"
-                  value="jsp servlet"></td>
-            </tr>
-            <tr>
-               <td><label for="club_desc">모임설명:</label></td>
-               <td>
-                  <textarea  id="club_desc" name="club_desc" 
-                  rows="5" cols="30">Hello java jsp servlet HTML5 javascript css</textarea>
-               </td>
-            </tr>
-            <tr>
-               <td><label for="club_leader">모임장명:</label></td>
-               <td>${member_id} <input type="hidden" placeholder="모임장명" id="club_leader"
-                  name="club_leader" value="${member_id}"></td>
-            </tr> 
-             <tr>
-               <td><label for="gender">성별:</label></td>
-               <td><input type="text" placeholder="성별" id="gender"
-                  name="gender" value="여"></td>
-            </tr>
-             <tr>
-               <td><label for="age">연령대:</label></td>
-               <td><input type="text" placeholder="연령대" id="age"
-                  name="age" value="20"></td>
-            </tr>
-             <tr>
-               <td><label for="location">지역:</label></td>
-               <td><input type="text" placeholder="지역" id="location"
-                  name="location" value="서울"></td>
-            </tr>
-             <tr>
-               <td><label for="close">비공개여부:</label></td>
-               <td><input type="text" placeholder="비공개여부" id="close"
-                  name="close" value="1"></td>
-            </tr>
-         	<tr>
-					<td><label for="upFile">IMG_NAME:</label></td>
-					<td><input type="file" id="upFile" name="upFile"></td>
-					<td></td>
-				</tr>
-             <tr>
-					<td></td>
-					<td><input type="submit" value="모임개설"></td>
-					<td></td>
-				</tr>
-         </tbody>
-      </table>
-   </form>
-      
-<!--       정렬 버튼 -->
-<!--       <div id="clubSort"> -->
-<!--         <ul id="clubSort_left"> -->
-<!--           <li>최신순</li> -->
-<!--           <li>제목순</li> -->
-<!--           <li>가입자수</li> -->
-<!--         </ul> -->
-<!--         <ul id="clubSort_right"> -->
-<!--           <li><a>목록</a></li> -->
-<!--           <li><a>모임개설</a></li> -->
-<!--         </ul> -->
-<!--       </div> -->
-      
- 
-
-      
-      <!-- 하단 번호 -->
-      <div id="club_All_Number">
-        <c:if test="${startPage != 1}">
-          <a href=`clubListAction.do?page=${startPage-1}`>[ 이전 ]</a>
-        </c:if>
-        <c:forEach var="pageNum" begin="${startPage}" end="${endPage}">
-          <!-- &nbsp : space의 특수문자코드 -->
-          <c:if test="${pageNum == spage}">${pageNum}&nbsp;</c:if>
-          <c:if test="${pageNum != spage}">
-            <a href = `culbListAtion.do?page=${pageNum}`>${pageNum}&nbsp;</a>
-          </c:if>
-        </c:forEach>
-        <c:if test="${endPage != maxPage}">
-          <a href=`clubListAction.do?page=${endPage+1}`>[ 다음 ]</a>
-        </c:if>
-      </div>
     </div>
+  </div>
 	
+  <!-- footer -->
 	<div id="footer">
       <div id="title_introduce">
         <h3 class="title">[ Project 소개 ]</h3>
@@ -213,6 +183,6 @@
           </a>
         </div>
       </div>
-    </div>
+  </div>
 </body>
 </html>

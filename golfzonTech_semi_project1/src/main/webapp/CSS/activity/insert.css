@@ -1,0 +1,143 @@
+#container {
+    position: relative;
+}
+/* 제목영역 */
+#activity_name_box {
+    position: relative;
+    background-color: #7ea8d853;
+    width: 1130px;
+    height: 140px;
+}
+#insert_title {
+    position: absolute;
+    background-color: white;
+    width: 1070px;
+    height:80px;
+    margin: 30px;
+}
+#activity_hidden_button {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+#activity_hidden_button img {
+    width: 30px;
+    height: 30px;
+}
+/* 목록 */
+#activity_content {
+    position: relative;
+    width: 1130px;
+    height: 50px;
+    margin: 0px;
+    font-weight: bold;
+    border-bottom: 5px solid rgb(9, 9, 143);
+}
+#activity_content ul {
+    margin: 20px 0px;
+    text-align: right;
+    padding-right: 20px;
+}
+#activity_content ul li {
+    display: inline-block;
+    margin: 0px;
+    padding: 0px 10px;
+    font-size: 20px;
+}
+/* inset 내용 */
+#activity_content_box ul {
+    padding : 0px
+}
+#activity_content_box p {
+    margin: 0px;
+}
+#activity_content_box {
+    padding: 20px;
+    border: 1px solid gray;
+    border-radius: 50px;
+    margin: 20px;
+}
+#flex {
+    display: flex;
+    justify-content: space-around;
+}
+#access_power {
+    margin-top: 10px;
+}
+#club_id {
+    margin-left: 20px;
+    font-size: 25px;
+    width: 130px;
+}
+#act_name {
+    font-size: 25px;
+    width: 500px;
+}
+/* insert_left */
+#activity_main_left {
+    padding-left: 50px;
+}
+#activity_main_left ul {
+    margin: 0px;
+}
+#activity_main_left, #activity_main_right {
+    width: 545px;
+    font-size: 18px;
+    line-height: 35px;
+}
+#preview_image {
+    padding: 10px;
+    margin: 10px 0px 0px 20px;
+    width: 330px;
+    height: 230px;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+#act_content {
+    resize: none;
+    border-radius: 5px;
+    border: 1px solid gray;
+    margin-left: 20px;
+    font-size: 15px;
+    width: 350px;
+    height: 150px;
+}
+/* insert_right */
+#activity_main_right ul {
+    margin-top: 0px;
+}
+#activity_info ul {
+    padding-left: 20px;
+}
+.right_list_bottom, .right_list_top {
+    margin-left: 20px;
+}
+.right_list_bottom select,.right_list_bottom input {
+    font-size: 15px;
+    height: 30px;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+#fname {
+    margin: 0px 0px 30px 20px;
+}
+#rdate, #adate {
+    font-size: 15px;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+.right_list_bottom select {
+    font-size: 15px;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+#act_insert_submit {
+    position: absolute;
+    font-size: 20px;
+    font-weight: bold;
+    right: 80px;
+    top: 270px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    background-color: #7ea8d853;
+}

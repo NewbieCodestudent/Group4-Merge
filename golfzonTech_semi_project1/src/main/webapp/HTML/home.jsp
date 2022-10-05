@@ -30,14 +30,15 @@
 	            <style>#account {right : 0px;} #account a {padding: 0px 10px;}</style>
 	          </c:when>
 	          <c:otherwise>
-	            ${member_id}님 환영합니다.
 	            <a href="mypage.do?member_id=${member_id}">
 	              <img src="CSS/icon/login.png" alt="mypage" name="mypage" id="mypage" title="마이페이지">
 	            </a>
 	            <a href="logout.do">
 	              <img src="CSS/icon/logout.jpg" alt="logout" name="logout" id="logout" title="로그아웃">
 	            </a>
-	            <style>#account {position:absolute; top:20px; left:900px; width:230px} #account a img {width: 25px; height: 30px; padding: 0px 10px;}</style>
+	            <br>
+	            ${member_id}님 환영합니다.
+	            <style>#account {position:absolute; text-align:right; right:0px; line-height: 20px;} #account a img {width: 25px; height: 30px; padding: 0px 13px;}</style>
 	          </c:otherwise>
 	        </c:choose>
 	      </div>
@@ -45,7 +46,7 @@
 	    <div id="header_nav">
 	      <ul id="nav_box">
 	        <li class="nav_item">
-	          <a href="club_selectAll.do">모임</a>
+	           <a href="club_selectAll.do?order=desc">모임</a>
 	        </li>
 	        <li class="nav_item">
 	          <a href="activity_selectAll.do">액티비티</a>
@@ -67,177 +68,77 @@
       <div id="recommend_box">
         <div id="recommend_club">
           <div style="margin:10px">
-            <h2>추천 모임</h2>
-            <a class="search_all" href="모임메인페이지">more</a>
+            <h2 class="event_title">[ 추천 모임: 따끈따끈 신규 클럽! 같이 시작해봐요. ]</h2>
+            <!-- <a class="search_all" href="club_selectAll.do">more</a> -->
           </div>
-          <a class="recommend_club_view" href="모임추천1">
-            <img class="recommend_img" src="../Users/JS/Desktop/test/profill_1.jpg">
-            <strong style="font-size:20px;">모임_name</strong>
-            <div class="club_" style="height:30px; margin:0px;">
-              <img src="CSS/member_profill_dumy/profill_1.jpg" class="member_profill" title="member_profill" alt="member_profill">
-              <div style="display:inline;">
-                <strong style="font-size:17px;">User_1<br>개설날짜 : 2022.09.22</strong>
-              </div>
-            </div>
-          </a>
-          <a class="recommend_club_view" href="모임추천2">
-            <img class="recommend_img" src="CSS/reconmend_club_dumy/test_1.jpg">
-            <strong style="font-size:20px;">모임_name</strong>
-            <div class="club_" style="height:30px; margin:0px;">
-              <img src="CSS/member_profill_dumy/profill_1.jpg" class="member_profill" title="member_profill" alt="member_profill">
-              <div style="display:inline;">
-                <strong style="font-size:17px;">User_1<br>개설날짜 : 2022.09.22</strong>
-              </div>
-            </div>
-          </a>
-          <a class="recommend_club_view" href="모임추천3">
-            <img class="recommend_img" src="CSS/reconmend_club_dumy/test_1.jpg">
-            <strong style="font-size:20px;">모임_name</strong>
-            <div class="club_" style="height:30px; margin:0px;">
-              <img src="CSS/member_profill_dumy/profill_1.jpg" class="member_profill" title="member_profill" alt="member_profill">
-              <div style="display:inline;">
-                <strong style="font-size:17px;">User_1<br>개설날짜 : 2022.09.22</strong>
-              </div>
-            </div>
-          </a>
-          <a class="recommend_club_view" href="모임추천4">
-            <img class="recommend_img" src="CSS/reconmend_club_dumy/test_1.jpg">
-            <strong style="font-size:20px;">모임_name</strong>
-            <div class="club_" style="height:30px; margin:0px;">
-              <img src="CSS/member_profill_dumy/profill_1.jpg" class="member_profill" title="member_profill" alt="member_profill">
-              <div style="display:inline;">
-                <strong style="font-size:17px;">User_1<br>개설날짜 : 2022.09.22</strong>
-              </div>
-            </div>
-          </a>
-          <a class="recommend_club_view" href="모임추천5">
-            <img class="recommend_img" src="CSS/reconmend_club_dumy/test_1.jpg">
-            <strong style="font-size:20px;">모임_name</strong>
-            <div class="club_" style="height:30px; margin:0px;">
-              <img src="CSS/member_profill_dumy/profill_1.jpg" class="member_profill" title="member_profill" alt="member_profill">
-              <div style="display:inline;">
-                <strong style="font-size:17px;">User_1<br>개설날짜 : 2022.09.22</strong>
-              </div>
-            </div>
-          </a>
+          <c:forEach var="club" items="${club_list}" end = "4">
+	          <a class="recommend_club_view" href="club_selectOne.do?club_id=${club.club_id}&club_name=${club.club_name}">
+	            <img class="recommend_img" src="upload/${club.club_img}">
+	            <strong style="font-size:20px;">${club.club_name}</strong>
+	            <div class="club_" style="height:30px; margin:0px;">
+	              <img src="upload/${club.img_name}" class="member_profill" title="member_profill" alt="member_profill">
+	              <div style="display:inline;">
+	                <strong style="font-size:17px;">${club.club_leader}</strong><br>
+	                <strong class="club_cdate">개설일 : ${club.cdate}</strong>
+	              </div>
+	            </div>
+	          </a>
+          </c:forEach>
         </div>
         <div id="recommend_activity">
           <div style="margin:10px">
-            <h2>추천 액티비티</h2>
-            <a class="search_all" href="액티비티메인페이지">more</a>
+            <h2 class="event_title">[ 추천 액티비티: 10월은 단풍구경과 함께! 강원도로 가봐요!! ]</h2>
+            <!-- <a class="search_all" href="액티비티메인페이지">more</a> -->
           </div>
-          <a class="recommend_club_view" href="모임추천1">
-            <img class="recommend_img" src="CSS/reconmend_club_dumy/test_1.jpg">
-            <strong style="font-size:20px;">모임_name</strong>
-            <div class="club_" style="height:30px; margin:0px;">
-              <img src="CSS/member_profill_dumy/profill_1.jpg" class="member_profill" title="member_profill" alt="member_profill">
-              <div style="display:inline;">
-                <strong style="font-size:17px;">User_1<br>개설날짜 : 2022.09.22</strong>
-              </div>
-            </div>
-          </a>
-          <a class="recommend_club_view" href="모임추천2">
-            <img class="recommend_img" src="CSS/reconmend_club_dumy/test_1.jpg">
-            <strong style="font-size:20px;">모임_name</strong>
-            <div class="club_" style="height:30px; margin:0px;">
-              <img src="CSS/member_profill_dumy/profill_1.jpg" class="member_profill" title="member_profill" alt="member_profill">
-              <div style="display:inline;">
-                <strong style="font-size:17px;">User_1<br>개설날짜 : 2022.09.22</strong>
-              </div>
-            </div>
-          </a>
-          <a class="recommend_club_view" href="모임추천3">
-            <img class="recommend_img" src="CSS/reconmend_club_dumy/test_1.jpg">
-            <strong style="font-size:20px;">모임_name</strong>
-            <div class="club_" style="height:30px; margin:0px;">
-              <img src="CSS/member_profill_dumy/profill_1.jpg" class="member_profill" title="member_profill" alt="member_profill">
-              <div style="display:inline;">
-                <strong style="font-size:17px;">User_1<br>개설날짜 : 2022.09.22</strong>
-              </div>
-            </div>
-          </a>
-          <a class="recommend_club_view" href="모임추천4">
-            <img class="recommend_img" src="CSS/reconmend_club_dumy/test_1.jpg">
-            <strong style="font-size:20px;">모임_name</strong>
-            <div class="club_" style="height:30px; margin:0px;">
-              <img src="CSS/member_profill_dumy/profill_1.jpg" class="member_profill" title="member_profill" alt="member_profill">
-              <div style="display:inline;">
-                <strong style="font-size:17px;">User_1<br>개설날짜 : 2022.09.22</strong>
-              </div>
-            </div>
-          </a>
-          <a class="recommend_club_view" href="모임추천5">
-            <img class="recommend_img" src="CSS/reconmend_club_dumy/test_1.jpg">
-            <strong style="font-size:20px;">모임_name</strong>
-            <div class="club_" style="height:30px; margin:0px;">
-              <img src="CSS/member_profill_dumy/profill_1.jpg" class="member_profill" title="member_profill" alt="member_profill">
-              <div style="display:inline;">
-                <strong style="font-size:17px;">User_1<br>개설날짜 : 2022.09.22</strong>
-              </div>
-            </div>
-          </a>
+          <c:forEach var="act_loc" items="${act_list_loc}" end = "4">
+	          <a class="recommend_club_view" href="activity_selectOne.do?act_id=${act_loc.act_id}">
+	            <img class="recommend_img" src="upload/${act_loc.act_fname}">
+	            <strong style="font-size:20px;">모임:${act_loc.act_name}</strong>
+	            <div class="club_" style="height:30px; margin:0px;">
+	              <img src="upload/${act_loc.leader_fname}" class="member_profill" title="member_profill" alt="member_profill">
+	              <div style="display:inline;">
+	                <strong style="font-size:17px;">주최자 : ${act_loc.act_leader}</strong><br>
+	                <strong class="act_date_rdate">라운딩일 : ${act_loc.rdate}</strong><br>
+	                <strong class="act_date_adate">마감일 : ${act_loc.adate}</strong>
+	              </div>
+	            </div>
+	          </a>
+          </c:forEach>
         </div>
         <div id="recommend_deadline">
           <div style="margin:10px">
-            <h2>마감임박 액티비티</h2>
-            <a class="search_all" href="액티비티메인페이지">more</a>
+            <h2 class="event_title">[ 마감임박 액티비티: 기다리기 싫은 당신을 위해! ]</h2>
+            <!-- <a class="search_all" href="액티비티메인페이지">more</a> -->
           </div>
-          <a class="recommend_club_view" href="모임추천1">
-            <img class="recommend_img" src="CSS/reconmend_club_dumy/test_1.jpg">
-            <strong style="font-size:20px;">모임_name</strong>
-            <div class="club_" style="height:30px; margin:0px;">
-              <img src="CSS/member_profill_dumy/profill_1.jpg" class="member_profill" title="member_profill" alt="member_profill">
-              <div style="display:inline;">
-                <strong style="font-size:17px;">User_1<br>개설날짜 : 2022.09.22</strong>
-              </div>
-            </div>
-          </a>
-          <a class="recommend_club_view" href="모임추천2">
-            <img class="recommend_img" src="CSS/reconmend_club_dumy/test_1.jpg">
-            <strong style="font-size:20px;">모임_name</strong>
-            <div class="club_" style="height:30px; margin:0px;">
-              <img src="CSS/member_profill_dumy/profill_1.jpg" class="member_profill" title="member_profill" alt="member_profill">
-              <div style="display:inline;">
-                <strong style="font-size:17px;">User_1<br>개설날짜 : 2022.09.22</strong>
-              </div>
-            </div>
-          </a>
-          <a class="recommend_club_view" href="모임추천3">
-            <img class="recommend_img" src="CSS/reconmend_club_dumy/test_1.jpg">
-            <strong style="font-size:20px;">모임_name</strong>
-            <div class="club_" style="height:30px; margin:0px;">
-              <img src="CSS/member_profill_dumy/profill_1.jpg" class="member_profill" title="member_profill" alt="member_profill">
-              <div style="display:inline;">
-                <strong style="font-size:17px;">User_1<br>개설날짜 : 2022.09.22</strong>
-              </div>
-            </div>
-          </a>
-          <a class="recommend_club_view" href="모임추천4">
-            <img class="recommend_img" src="CSS/reconmend_club_dumy/test_1.jpg">
-            <strong style="font-size:20px;">모임_name</strong>
-            <div class="club_" style="height:30px; margin:0px;">
-              <img src="CSS/member_profill_dumy/profill_1.jpg" class="member_profill" title="member_profill" alt="member_profill">
-              <div style="display:inline;">
-                <strong style="font-size:17px;">User_1<br>개설날짜 : 2022.09.22</strong>
-              </div>
-            </div>
-          </a>
-          <a class="recommend_club_view" href="모임추천5">
-            <img class="recommend_img" src="CSS/reconmend_club_dumy/test_1.jpg">
-            <strong style="font-size:20px;">모임_name</strong>
-            <div class="club_" style="height:30px; margin:0px;">
-              <img src="CSS/member_profill_dumy/profill_1.jpg" class="member_profill" title="member_profill" alt="member_profill">
-              <div style="display:inline;">
-                <strong style="font-size:17px;">User_1<br>개설날짜 : 2022.09.22</strong>
-              </div>
-            </div>
-          </a>
+          <c:forEach var="act_date" items="${act_list_date}" end = "4">
+	          <a class="recommend_club_view" href="activity_selectOne.do?act_id=${act_date.act_id}">
+	            <img class="recommend_img" src="upload/${act_date.act_fname}">
+	            <strong style="font-size:20px;">모임:${act_date.act_name}</strong>
+	            <div class="club_" style="height:30px; margin:0px;">
+	              <img src="upload/${act_date.leader_fname}" class="member_profill" title="member_profill" alt="member_profill">
+	              <div style="display:inline;">
+	                <strong style="font-size:17px;">주최자 : ${act_date.act_leader}</strong><br>
+	                <strong class="act_date_rdate">라운딩일 : ${act_date.rdate}</strong><br>
+	                <strong class="act_date_adate">마감일 : ${act_date.adate}</strong>
+	              </div>
+	            </div>
+	          </a>
+          </c:forEach>
         </div>
       </div>
-      <div>
-        빈공간
-      </div>
     </div>
+    <script>
+    	// wdate fillter
+        let act_date_rdate = document.getElementsByClassName('act_date_rdate');
+    	let act_date_adate = document.getElementsByClassName('act_date_adate');
+        for (let i = 0; i < act_date_rdate.length; i++) {
+          console.log(act_date_rdate[i].outerText.slice(0,-5));
+          act_date_rdate[i].innerText = act_date_rdate[i].outerText.slice(0,-5);
+          act_date_adate[i].innerText = act_date_adate[i].outerText.slice(0,-5);
+        }
+    
+    
+    </script>
 
 	<!-- footerarea -->
     <div id="footer">

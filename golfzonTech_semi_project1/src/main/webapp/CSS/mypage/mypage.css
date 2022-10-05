@@ -1,44 +1,192 @@
 #container div {
-    position : relative;
+  position : relative;
 }
 #container {
-    position: relative;
-    width: 1130px;
-    height: 1100px;
-    display: block;
+  position: relative;
+  width: 1130px;
+  height: 1200px;
+  display: block;
 }
 #mypage_intro_background {
-    background-color: #eae49553;
-    margin: 0px;
-    height: 480px;
-    display: block;
+  background-color: #eae49553;
+  margin: 0px;
+  height: 480px;
+  display: block;
 }
 #my_info_box {
-    background-color: white;
-    width: 1080px;
-    height: 430px;
-    top : 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  background-color: white;
+  width: 1080px;
+  height: 430px;
+  top : 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 #profill {
-    width: 300px;
-    height: 350px;
-    border: 1px solid gray;
-    border-radius: 5px;
+  width: 300px;
+  height: 350px;
+  border: 1px solid gray;
+  border-radius: 5px;
 }
 #my_info>li {
-    display: inline-block;
-    vertical-align: middle;
-    line-height: 45px;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 45px;
 }
 #my_info {
-    padding: 40px;
+  padding: 40px;
 }
 #my_info li ul li {
-    font-size: 20px;
+  font-size: 20px;
 }
 #update_button {
-    position: absolute;
-    left: 95%;
+  position: absolute;
+  left: 95%;
+}
+#mypage_bottom {
+  height: 650px;
+}
+#mypage_bottom ul {
+  padding: 0px;
+  margin: 0px;
+}
+#mypage_category {
+padding: 20px 0px 10px 0px;
+border-bottom: 5px solid rgb(77, 77, 197);
+}
+#mypage_category ul {
+margin: auto;
+padding: 0px 10px;
+}
+#mypage_category li {
+display: inline-block;
+font-size: 20px;
+font-weight: bold;
+letter-spacing: 3px;
+padding: 0px 20px;
+cursor: pointer;
+}
+.tab.active {
+  color: blue;
+}
+#mypage_category li:hover {
+  color: blue;
+}
+/* 하단 공통 */
+#searchKey {
+  width: 110px;
+  margin-right: 5px;
+}
+#searchWord {
+  width:350px;
+}
+#submit {
+  background-color: rgb(196, 196, 206);
+  color: black;
+  letter-spacing: 3px;
+}
+/* mypage_bootm_club */
+#clubs {
+  height: 550px;
+  overflow: auto;
+}
+#club_searchList form {
+  padding: 20px 20px;
+}
+#club_searchList select, #club_searchList input {
+  font-size: 18px;
+  height: 30px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+#club_searchList li {
+  display: inline-block;
+  font-size: 18px;
+  padding: 0px 10px;
+  letter-spacing: 3px;
+  position: absolute;
+}
+#club_searchList li:first-child {
+  border-right: 3px solid gray;
+  top: 25px;
+  right: 90px;
+}
+#club_searchList li:last-child {
+  top: 25px;
+  right: 0px;
+}
+#club_searchList li {
+  display: inline-block;
+  font-size: 18px;
+}
+.club_box {
+  display: inline-block;
+  border: 1px solid gray;
+  border-radius : 5px;
+  width: 200px;
+  height: 235px;
+  padding: 0px;
+  margin: 7px;
+}
+.club_img {
+  padding : 10px;
+  width: 180px;
+  height: 180px;
+}
+.club_box {
+  font-size: 15px;
+}
+/* mypage_bootm_activity */
+#activitys {
+  height: 550px;
+  overflow: auto;
+}
+#activity_searchList form {
+  padding: 20px 20px;
+}
+#activity_searchList select, #activity_searchList input {
+  font-size: 18px;
+  height: 30px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+#activity_searchList li {
+  display: inline-block;
+  font-size: 18px;
+  padding: 0px 10px;
+  letter-spacing: 3px;
+  position: absolute;
+}
+#activity_searchList li:first-child {
+  border-right: 3px solid gray;
+  top: 25px;
+  right: 90px;
+}
+#activity_searchList li:last-child {
+  top: 25px;
+  right: 0px;
+}
+#activity_searchList li {
+  display: inline-block;
+  font-size: 18px;
+}
+.activity_box {
+  position: relative;
+  font-size: 15px;
+  display: inline-block;
+  border: 1px solid gray;
+  border-radius : 5px;
+  width: 200px;
+  padding: 0px;
+  margin: 7px;
+}
+.activity_img {
+  padding : 10px;
+  width: 180px;
+  height: 180px;
+}
+[data-tab-content] {
+  display: none;
+}
+.active[data-tab-content] {
+  display: block;
 }

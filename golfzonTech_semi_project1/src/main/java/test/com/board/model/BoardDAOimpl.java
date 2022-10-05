@@ -96,13 +96,13 @@ public class BoardDAOimpl implements BoardDAO {
 	@Override
 	public int update(BoardVO vo) {
 		System.out.println("update()....");
-		
+
 //		System.out.println(vo.getTitle());
 //		System.out.println(vo.getContent());
 //		System.out.println(vo.getFname());
 //		System.out.println(vo.getNotice());
 //		System.out.println(vo.getBoard_id());
-		
+
 		int flag = 0;
 		try {
 			conn = DriverManager.getConnection(BoardDB_Oracle.URL, BoardDB_Oracle.USER, BoardDB_Oracle.PASSWORD);
@@ -116,7 +116,7 @@ public class BoardDAOimpl implements BoardDAO {
 			pstmt.setLong(5, vo.getBoard_id());
 
 			flag = pstmt.executeUpdate();
-			System.out.println("flag: "+flag);
+			System.out.println("flag: " + flag);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -147,14 +147,14 @@ public class BoardDAOimpl implements BoardDAO {
 
 	@Override
 	public int delete(BoardVO vo) {
-System.out.println("delete()....");
-		
+		System.out.println("delete()....");
+
 //		System.out.println(vo.getTitle());
 //		System.out.println(vo.getContent());
 //		System.out.println(vo.getFname());
 //		System.out.println(vo.getNotice());
 //		System.out.println(vo.getBoard_id());
-		
+
 		int flag = 0;
 		try {
 			conn = DriverManager.getConnection(BoardDB_Oracle.URL, BoardDB_Oracle.USER, BoardDB_Oracle.PASSWORD);
@@ -162,7 +162,7 @@ System.out.println("delete()....");
 			pstmt = conn.prepareStatement(BoardDB_Oracle.SQL_BOARD_DELETE);
 			pstmt.setLong(1, vo.getBoard_id());
 			flag = pstmt.executeUpdate();
-			System.out.println("flag: "+flag);
+			System.out.println("flag: " + flag);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -210,7 +210,8 @@ System.out.println("delete()....");
 				vo1.setContent(rs.getString("content"));
 				vo1.setWriter(rs.getString("writer"));
 				vo1.setFname(rs.getString("fname"));
-				vo1.setWdate(rs.getDate("wdate"));
+				vo1.setWdate(rs.getTimestamp("wdate"));
+				vo1.setNotice(rs.getInt("notice"));
 				// 정보를 담은 객체를 List<BoardVO>에 저장
 			}
 		} catch (SQLException e) {
@@ -242,10 +243,62 @@ System.out.println("delete()....");
 	}
 
 	@Override
-	public List<BoardVO> selectAll_notice(long club_id) {
+	public List<BoardVO> selectAll(long club_id) {
 		// 클럽 id -> 더미변수로 설정 (20)
 //		club_id = 20;
-		System.out.println("selectAll()....club_id: "+club_id);
+		System.out.println("selectAll()....club_id: " + club_id);
+		
+		List<BoardVO> vos = new ArrayList<BoardVO>();
+		
+		try {
+			conn = DriverManager.getConnection(BoardDB_Oracle.URL, BoardDB_Oracle.USER, BoardDB_Oracle.PASSWORD);
+			System.out.println("conn Successed...");
+			pstmt = conn.prepareStatement(BoardDB_Oracle.SQL_BOARD_SELECT_ALL);
+			pstmt.setLong(1, club_id);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				BoardVO vo = new BoardVO();
+				// BoardDB의 게시글 정보를 vo객체에 저장
+				vo.setBoard_id(rs.getLong("board_id"));
+				vo.setTitle(rs.getString("title"));
+				vo.setClub_id(club_id);
+				vo.setWriter(rs.getString("writer"));
+				vo.setWdate(rs.getTimestamp("wdate"));
+				vo.setNotice(rs.getInt("notice"));
+				// 정보를 담은 객체를 List<BoardVO>에 저장
+				vos.add(vo);
+			}
+			System.out.println(vos);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return vos;
+	} // end selectAll()
+	@Override
+	public List<BoardVO> selectAll_notice(long club_id) {
+		System.out.println("selectAll()....club_id: " + club_id);
 
 		List<BoardVO> vos = new ArrayList<BoardVO>();
 
@@ -256,7 +309,7 @@ System.out.println("delete()....");
 			pstmt.setLong(1, club_id);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				
+
 				BoardVO vo = new BoardVO();
 				// BoardDB의 게시글 정보를 vo객체에 저장
 				vo.setBoard_id(rs.getLong("board_id"));
@@ -265,11 +318,11 @@ System.out.println("delete()....");
 				vo.setContent(rs.getString("content"));
 				vo.setWriter(rs.getString("writer"));
 				vo.setFname(rs.getString("fname"));
-				vo.setWdate(rs.getDate("wdate"));
+				vo.setWdate(rs.getTimestamp("wdate"));
 				vo.setNotice(rs.getInt("notice"));
 				// 정보를 담은 객체를 List<BoardVO>에 저장
 				vos.add(vo);
-				
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -298,15 +351,13 @@ System.out.println("delete()....");
 		}
 		return vos;
 	} // end selectAll_notice()
-	
+
 	@Override
 	public List<BoardVO> selectAll_common(long club_id, String order) {
-		// 클럽 id -> 더미변수로 설정 (20)
-//		club_id = 20;
 		System.out.println("selectAll()....");
-		
+
 		List<BoardVO> vos = new ArrayList<BoardVO>();
-		
+
 		try {
 			conn = DriverManager.getConnection(BoardDB_Oracle.URL, BoardDB_Oracle.USER, BoardDB_Oracle.PASSWORD);
 			System.out.println("conn Successed...");
@@ -329,12 +380,12 @@ System.out.println("delete()....");
 				vo.setContent(rs.getString("content"));
 				vo.setWriter(rs.getString("writer"));
 				vo.setFname(rs.getString("fname"));
-				vo.setWdate(rs.getDate("wdate"));
+				vo.setWdate(rs.getTimestamp("wdate"));
 				vo.setNotice(rs.getInt("notice"));
 				// 정보를 담은 객체를 List<BoardVO>에 저장
 				vos.add(vo);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -389,7 +440,7 @@ System.out.println("delete()....");
 				vo.setContent(rs.getString("content"));
 				vo.setWriter(rs.getString("writer"));
 				vo.setFname(rs.getString("fname"));
-				vo.setWdate(rs.getDate("wdate"));
+				vo.setWdate(rs.getTimestamp("wdate"));
 				vos.add(vo);
 			}
 		} catch (SQLException e) {
@@ -424,12 +475,11 @@ System.out.println("delete()....");
 		return vos;
 	} // end searchList()
 
-
 	@Override
 	public boolean isWriter(BoardVO vo) {
 		System.out.println("isWriter()....");
 		boolean flag = false;
-		
+
 		try {
 			conn = DriverManager.getConnection(BoardDB_Oracle.URL, BoardDB_Oracle.USER, BoardDB_Oracle.PASSWORD);
 			System.out.println("conn Successed...");
@@ -437,7 +487,95 @@ System.out.println("delete()....");
 			pstmt.setLong(1, vo.getBoard_id());
 			pstmt.setString(2, vo.getWriter());
 			rs = pstmt.executeQuery();
-			if (rs.next()) { flag = true; }
+			if (rs.next()) {
+				flag = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return flag;
+	}
+
+	@Override
+	public boolean isMember(BoardVO vo) {
+		System.out.println("isWriter()....");
+		boolean flag = false;
+
+		try {
+			conn = DriverManager.getConnection(BoardDB_Oracle.URL, BoardDB_Oracle.USER, BoardDB_Oracle.PASSWORD);
+			System.out.println("conn Successed...");
+			pstmt = conn.prepareStatement(BoardDB_Oracle.SQL_BOARD_IS_MEMBER);
+			pstmt.setLong(1, vo.getClub_id());
+			pstmt.setString(2, vo.getWriter());
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				flag = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return flag;
+	}
+
+	@Override
+	public boolean isLeader(BoardVO vo) {
+		System.out.println("isLeader()....");
+		boolean flag = false;
+
+		try {
+			conn = DriverManager.getConnection(BoardDB_Oracle.URL, BoardDB_Oracle.USER, BoardDB_Oracle.PASSWORD);
+			System.out.println("conn Successed...");
+			pstmt = conn.prepareStatement(BoardDB_Oracle.SQL_BOARD_IS_LEADER);
+			pstmt.setLong(1, vo.getClub_id());
+			pstmt.setString(2, vo.getWriter());
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				flag = true;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

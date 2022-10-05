@@ -25,18 +25,24 @@
 <body>
     <a id="AD_link" href="" target="_parent">
         <img src="" alt="AD_view" id="AD_view">
-        <script>
-            const ad_number = Math.floor(Math.random() * 3);
-            // console.log(ad_number);
-            var img_view = "CSS/AD/AD_test_"+ad_number+".png";
-            // console.log(img_view);
-            document.getElementById("AD_view").src = img_view;
-            var img_link = "www.naver.com";
-            document.getElementById("AD_link").href = img_link;
-        </script>
     </a>
-    <img src="CSS/AD/AD_test_0.png" alt="AD">
-    <img src="CSS/AD/AD_test_1.png" alt="AD">
-    <img src="CSS/AD/AD_test_2.png" alt="AD">
+    <a id="event_0" href="event_selectOne.do?img_link=event_0.jpg&event_name=Golf%20Party">
+	    <img src="CSS/AD/event_0.jpg" alt="AD">
+    </a>
+    <a id="event_1" href="event_selectOne.do?img_link=event_1.jpg&event_name=DRIVE%20FOR%20DIAGNOSIS">
+	    <img src="CSS/AD/event_1.jpg" alt="AD">
+    </a>
+    <a id="event_2" href="event_selectOne.do?img_link=event_2.jpg&event_name=Golf_Event">
+	    <img  src="CSS/AD/event_2.jpg" alt="AD">
+    </a>
+    <script>
+        const ad_number = Math.floor(Math.random() * 3);
+        console.log(ad_number);
+        var img_view = "CSS/AD/event_"+ad_number+".jpg";
+        console.log(img_view);
+        document.getElementById("AD_view").setAttribute('src',img_view);
+        document.getElementById("AD_link").setAttribute('href',document.getElementById("event_"+ad_number).href);
+        console.log(document.getElementById("event_"+ad_number).href);
+    </script>
 </body>
 </html>

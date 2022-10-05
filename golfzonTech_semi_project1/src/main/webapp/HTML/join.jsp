@@ -318,7 +318,7 @@
                     <option value="충남">충남</option>
                     <option value="제주">제주</option>
                     <option value="대전">대전</option>
-                    <option value="대전">인천</option>
+                    <option value="인천">인천</option>
                     <option value="광주">광주</option>
                     <option value="대구">대구</option>
                     <option value="부신">부산</option>

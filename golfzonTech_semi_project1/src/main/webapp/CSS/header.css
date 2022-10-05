@@ -42,10 +42,9 @@ a:active{
   width: 120px;
 }
 #account {
-  position : relative;
-  top : -80%;
-  left : 88%;
+  position : absolute;
   font-size : 15px;
+  top : 30px
 }
 #header_nav {
   position : relative;

@@ -1,6 +1,7 @@
 package test.com.board.model;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 public class BoardVO {
@@ -10,7 +11,7 @@ public class BoardVO {
 	private String title; // 게시글 제목
 	private String content; // 게시글 내용
 	private String fname; // 업로드 파일명
-	private Date wdate; // 작성일자
+	private Timestamp wdate; // 작성일자
 	private int notice; // 공지글 여부 (일반글: 0, 공지글: 1)
 	// generating constructor
 	public BoardVO() {
@@ -53,10 +54,10 @@ public class BoardVO {
 	public void setFname(String fname) {
 		this.fname = fname;
 	}
-	public Date getWdate() {
+	public Timestamp getWdate() {
 		return wdate;
 	}
-	public void setWdate(Date wdate) {
+	public void setWdate(Timestamp wdate) {
 		this.wdate = wdate;
 	}
 	public int getNotice() {

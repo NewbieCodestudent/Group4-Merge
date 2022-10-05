@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import test.com.board.model.BoardVO;
+
 public class CommentDAOimpl implements CommentDAO {
 	Connection conn;
 	PreparedStatement pstmt;
@@ -90,14 +92,52 @@ public class CommentDAOimpl implements CommentDAO {
 	}
 
 	@Override
-	public int delete(CommentVO vo) {
+	public int delete_one(CommentVO vo) { // 댓글 삭제
 		int flag = 0;
 		try {
 			conn = DriverManager.getConnection(CommentDB_Oracle.URL, CommentDB_Oracle.USER, CommentDB_Oracle.PASSWORD);
 			System.out.println("conn Successed...");
-			pstmt = conn.prepareStatement(CommentDB_Oracle.SQL_COMMENT_DELETE);
+			pstmt = conn.prepareStatement(CommentDB_Oracle.SQL_COMMENT_DELETE_ONE);
 
 			pstmt.setLong(1, vo.getComment_id());
+			flag = pstmt.executeUpdate();
+			System.out.println("flag: " + flag);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return flag;
+	}
+
+	public int delete_all(BoardVO vo) { // 댓글 삭제
+		int flag = 0;
+		try {
+			conn = DriverManager.getConnection(CommentDB_Oracle.URL, CommentDB_Oracle.USER, CommentDB_Oracle.PASSWORD);
+			System.out.println("conn Successed...");
+			pstmt = conn.prepareStatement(CommentDB_Oracle.SQL_COMMENT_DELETE_ALL);
+			
+			pstmt.setLong(1, vo.getBoard_id());
 			flag = pstmt.executeUpdate();
 			System.out.println("flag: " + flag);
 		} catch (SQLException e) {

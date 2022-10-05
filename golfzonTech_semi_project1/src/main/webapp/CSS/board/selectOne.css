@@ -129,14 +129,18 @@
   position: relative;
   display: inline;
 }
-#comment_delete {
+.comment_delete {
+  display: none;
   height: 35px;
   width: 50px;
   position: absolute;
   left : 970px;
-  top: 0%;
+  top: -20px;
   border-radius: 5px;
   color: white;
   border: 2px solid gray;
   background-color: rgba(13, 13, 223, 0.523);
+}
+.leader_power {
+  display: none;
 }
