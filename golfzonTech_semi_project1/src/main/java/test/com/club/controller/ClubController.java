@@ -140,6 +140,10 @@ public class ClubController extends HttpServlet {
          
          boolean isMember = dao3.isMember(vo4);//접속자가 모임가입신청을 했는지 여부
          
+         /**
+          * 1. 작성자: 이주희 (백엔드)
+          * 2. 기능: 모임 상세페이지 상 게시글, 액비티비, 앨범 미리보기 조회 기능
+          */
         // 해당 모임의 공지글을 호출
 		List<BoardVO> notices = new BoardDAOimpl().selectAll_notice(Long.parseLong(request.getParameter("club_id")));
 		// 해당 모임의 게시글을 호출

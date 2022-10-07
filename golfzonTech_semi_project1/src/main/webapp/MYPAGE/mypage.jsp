@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="CSS/mypage/mypage.css">
   </head>
   <body>
-    <!-- headarea -->
+    <!-- header -->
     <div id="header">
 	    <div id="header_up">
 	      <div id="logo">
@@ -68,6 +68,7 @@
                   <img src="CSS/icon/setting_icon.png" alt="setting" style="width:30px; padding:10px; position: absolute; left:95%;">
                 </a>
               </div>
+              <!-- user_정보 -->
               <ul id="my_info">
                 <li><img src="upload/${vo2.img_name}" id="profill" onerror="this.src='CSS/icon/profill.png'"></li>
                 <li>
@@ -174,12 +175,30 @@
         </div>
     </div>
     <script>
+	  /* 날짜출력 */
       let activity_rdate = document.getElementsByClassName('activity_rdate');
       let activity_adate = document.getElementsByClassName('activity_adate');
       for (let i = 0; i < activity_rdate.length; i++) {
         activity_rdate[i].innerText = activity_rdate[i].outerText.slice(0,-5);
         activity_adate[i].innerText = activity_adate[i].outerText.slice(0,-5);
       }
+      /* 하단 클럽, 액티비티를 display하는 함수 */
+      const tabs = document.querySelectorAll('[data-tab-target]');
+	    const tabContents = document.querySelectorAll('[data-tab-content]');
+	
+	    tabs.forEach(tab => {
+	      tab.addEventListener('click', () => {
+	        const target = document.querySelector(tab.dataset.tabTarget)
+	        tabContents.forEach(tabcontent => {
+	          tabcontent.classList.remove('active');
+	        });
+	        tabs.forEach(tab => {
+	          tab.classList.remove('active');
+	        });
+	        tab.classList.add('active')
+	        target.classList.add('active')
+	      })
+	    });
     </script>
     
 
@@ -207,23 +226,5 @@
         </div>
       </div>
     </div>
-    <script>
-	    const tabs = document.querySelectorAll('[data-tab-target]');
-	    const tabContents = document.querySelectorAll('[data-tab-content]');
-	
-	    tabs.forEach(tab => {
-	      tab.addEventListener('click', () => {
-	        const target = document.querySelector(tab.dataset.tabTarget)
-	        tabContents.forEach(tabcontent => {
-	          tabcontent.classList.remove('active');
-	        });
-	        tabs.forEach(tab => {
-	          tab.classList.remove('active');
-	        });
-	        tab.classList.add('active')
-	        target.classList.add('active')
-	      })
-	    });
-    </script>
   </body>
 </html>

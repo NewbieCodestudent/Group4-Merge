@@ -10,7 +10,7 @@
     <title>GolfMate_모임</title>
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
-    <link rel="stylesheet" href="CSS/club/clubpage.css">
+    <link rel="stylesheet" href="CSS/club/selectOne.css">
   </head>
   <body>
 	<!-- headarea -->
@@ -47,7 +47,7 @@
 	    <div id="header_nav">
 	      <ul id="nav_box">
 	        <li class="nav_item">
-	          <a href="club_selectAll.do">모임</a>
+	          <a href="club_selectAll.do?order=desc">모임</a>
 	        </li>
 	        <li class="nav_item">
 	          <a href="activity_selectAll.do">액티비티</a>

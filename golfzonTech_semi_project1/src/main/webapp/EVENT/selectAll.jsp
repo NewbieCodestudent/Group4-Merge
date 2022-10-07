@@ -77,38 +77,55 @@
             </div>
             <div id="event_main">
               <!-- event module -->
-                <!-- 더미1 -->
-                <div class="event_content">
-                    <ul>
-                      <a href="Golf Party" class="event_link">
-                            <li><img src="CSS/event/event_0.jpg" alt="event_0.jpg" title="이벤트0" class="event_img"></li>
-                        </a>
-                        <li class="event_date">2022-08-02 ~ 2022-09-27</li>
-                        <li class="event_ing_ed"></li>
-                        <li class="event_name">Golf Party</li>
-                    </ul>
-                </div>
-                <!-- 더미2 -->
-                <div class="event_content">
+              <div class="event_content">
                   <ul>
-                    <a href="DRIVE FOR DIAGNOSIS" class="event_link">
-                          <li><img src="CSS/event/event_1.jpg" alt="event_1.jpg" title="이벤트1" class="event_img"></li>
+                    <a href="Golf Party" class="event_link">
+                          <li><img src="CSS/event/event_0.jpg" alt="event_0.jpg" title="이벤트0" class="event_img"></li>
                       </a>
-                      <li class="event_date">2022-08-02 ~ 2022-12-31</li>
+                      <li class="event_date">2022-08-02 ~ 2022-09-27</li>
                       <li class="event_ing_ed"></li>
-                      <li class="event_name">DRIVE FOR DIAGNOSIS</li>
+                      <li class="event_name">Golf Party</li>
                   </ul>
               </div>
-              <!-- 더미2 -->
-                <div class="event_content">
-                  <ul>
-                    <a href="Golf_Event" class="event_link">
-                          <li><img src="CSS/event/event_2.jpg" alt="event_2.jpg" title="이벤트2" class="event_img"></li>
-                      </a>
-                      <li class="event_date">2022-10-03 ~ 2022-12-31</li>
-                      <li class="event_ing_ed"></li>
-                      <li class="event_name">Golf_Event</li>
-                  </ul>
+              <div class="event_content">
+                <ul>
+                  <a href="DRIVE FOR DIAGNOSIS" class="event_link">
+                        <li><img src="CSS/event/event_1.jpg" alt="event_1.jpg" title="이벤트1" class="event_img"></li>
+                    </a>
+                    <li class="event_date">2022-08-02 ~ 2022-12-31</li>
+                    <li class="event_ing_ed"></li>
+                    <li class="event_name">DRIVE FOR DIAGNOSIS</li>
+                </ul>
+              </div>
+              <div class="event_content">
+                <ul>
+                  <a href="Golf_Event" class="event_link">
+                        <li><img src="CSS/event/event_2.jpg" alt="event_2.jpg" title="이벤트2" class="event_img"></li>
+                    </a>
+                    <li class="event_date">2022-10-03 ~ 2022-12-31</li>
+                    <li class="event_ing_ed"></li>
+                    <li class="event_name">Golf_Event</li>
+                </ul>
+              </div>
+              <div class="event_content">
+                <ul>
+                  <a href="Golf_Event" class="event_link">
+                        <li><img src="CSS/event/event_3.jpg" alt="event_3.jpg" title="이벤트3" class="event_img"></li>
+                    </a>
+                    <li class="event_date">2022-06-28 ~ 2022-10-27</li>
+                    <li class="event_ing_ed"></li>
+                    <li class="event_name">Visit Thailand Year 2022 Golf Tournament</li>
+                </ul>
+              </div>
+              <div class="event_content">
+                <ul>
+                  <a href="Golf_Event" class="event_link">
+                        <li><img src="CSS/event/event_4.jpg" alt="event_4.jpg" title="이벤트4" class="event_img"></li>
+                    </a>
+                    <li class="event_date">2022-07-03 ~ 2023-01-15</li>
+                    <li class="event_ing_ed"></li>
+                    <li class="event_name">스마트스코어 아마추어 골프리그</li>
+                </ul>
               </div>
             </div>
           </div>

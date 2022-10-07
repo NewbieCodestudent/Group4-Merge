@@ -54,14 +54,6 @@ public class ActivityMemberDAOimpl implements ActivityMemberDAO {
 			System.out.println("conn Successed...");
 			pstmt = conn.prepareStatement(ActivityMemberDB_Oracle.SQL_ACT_MEMBER_INSERT);
 
-//			"INSERT INTO ACT_MEMBER (AM_ID,MEMBER_ID,ACT_ID,QUALIFIED, APPROVED, AMTYPE) "
-//			+ "VALUES(SEQ_ACT_MEMBER.nextval,?,?,?,?,?)";
-			
-//			vo1.setAct_id(act_id);
-//			vo1.setMember_id(act_leader);
-//			vo1.setQualified(1);
-//			vo1.setApproved(1);
-//			vo1.setAmtype(1);
 
 			pstmt.setString(1, vo.getMember_id());
 			pstmt.setLong(2, vo.getAct_id());
@@ -110,14 +102,6 @@ public class ActivityMemberDAOimpl implements ActivityMemberDAO {
 			System.out.println("conn Successed...");
 			pstmt = conn.prepareStatement(ActivityMemberDB_Oracle.SQL_ACT_MEMBER_UPDATE);
 
-//			"INSERT INTO ACT_MEMBER (AM_ID,MEMBER_ID,ACT_ID,QUALIFIED, APPROVED, AMTYPE) "
-//			+ "VALUES(SEQ_ACT_MEMBER.nextval,?,?,?,?,?)";
-			
-//			vo1.setAct_id(act_id);
-//			vo1.setMember_id(act_leader);
-//			vo1.setQualified(1);
-//			vo1.setApproved(1);
-//			vo1.setAmtype(1);
 
 			pstmt.setInt(1, vo.getApproved());
 			pstmt.setLong(2, vo.getAm_id());

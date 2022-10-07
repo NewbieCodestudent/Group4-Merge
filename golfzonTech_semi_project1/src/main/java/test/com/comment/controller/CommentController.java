@@ -23,18 +23,9 @@ import test.com.comment.model.CommentDAOimpl;
 import test.com.comment.model.CommentVO;
 
 /**
- * Servlet implementation class CommentController
+ * 1. 작성자: 이주희 (백엔드)
+ * 2. 기능: 댓글의 CRUD 기능
  */
-
-//// if (request.getSession().getAttribute("member_id") != null) {
-//HttpSession session = request.getSession();
-//String member_id = (String) session.getAttribute("member_id");
-//System.out.println("member_id:" + member_id);
-//
-//if (member_id != null) {
-//} else {
-//	response.sendRedirect("login.do");
-//}
 
 @WebServlet({ "/comment_insertOK.do", "/comment_deleteOK.do" })
 public class CommentController extends HttpServlet {

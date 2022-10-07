@@ -109,8 +109,8 @@
     <div id="selectOne_box">
       <div id="update_delete_insert">
         <ul style="margin: 0%;">
-          <li class="leader_power"><input type="button" value="수정" style="display:none;" onclick="doAction(0)"></li>
-          <li class="leader_power"><input type="button" value="삭제" style="display:none;" onclick="doAction(1)"></li>
+          <li class="leader_power"><input type="button" value="수정" onclick="doAction(0)"></li>
+          <li class="leader_power"><input type="button" value="삭제" onclick="doAction(1)"></li>
 		  <li><input type="button" value="작성" onclick="doAction(2)"></li>          
         </ul>
       </div>
@@ -167,7 +167,7 @@
   		document.getElementById('notice').innerText = "게시글";
   	}
   	
-  	
+  	// 날짜 필터
   	let wdate = document.getElementById('wdate');
   	wdate.innerText = wdate.outerText.slice(0,-5);
   	let cdate = document.getElementsByClassName('cdate');
@@ -177,34 +177,36 @@
 	    cdate[i].innerText = cdate[i].outerText.slice(0,-6)+")";
 	  }
 	  
-	  // session 값 가져오기, 댓글비교
-	  <%String session_id = (String)session.getAttribute("member_id");%>
-	  let session = "<%=session_id%>";
-	  console.log(session);
-	  let comment_writer = document.getElementsByClassName('<%=session_id%>');
-	  console.log(comment_writer.length)
-	  for (let i = 0; i < comment_writer.length; i++) {
-		  comment_writer[i].setAttribute('style','display:block');
-	  }
+	// session 값 가져와서 작성자와 맞는지 확인
+	<%String session_id = (String)session.getAttribute("member_id");%>
+	let session = "<%=session_id%>";
+	console.log(session);
+	let comment_writer = document.getElementsByClassName('<%=session_id%>');
+	console.log(comment_writer.length)
+	for (let i = 0; i < comment_writer.length; i++) {
+	 comment_writer[i].setAttribute('style','display:block');
+	}
 	  
-	  // 리더, 작성자 확인
-	  let leader_power = document.getElementsByClassName('leader_power');
-	  let isWriter = ${isWriter}
-	  console.log(isWriter)
-	  let isLeader = ${isLeader}
-	  console.log(isLeader)
-	  if(isWriter == "true") {
-		console.log("작성자입니다.")
-	    for (let i = 0; i < leader_power.length; i++) {
-	      leader_power[i].setAttribute('style','display:block');
-	    }
-	  }
-	  if(isLeader == "true") {
-		  console.log("리더입니다.")
-	    for (let i = 0; i < leader_power.length; i++) {
-	      leader_power[i].setAttribute('style','display:block');
-	    }
-	  }
+	 // 리더, 작성자 확인
+	 let leader_power = document.getElementsByClassName('leader_power');
+	 let isWriter = ${isWriter}
+	 console.log(isWriter)
+	 let isLeader = ${isLeader}
+	 console.log(isLeader)
+	 if(isWriter == false) {
+	console.log("작성자가 아닙니다.")
+	   for (let i = 0; i < leader_power.length; i++) {
+	     leader_power[i].setAttribute('style','display:none');
+	   }
+	 }
+	 
+	 // 리더이면 리더의 권한을 출력
+	 if(isLeader == false) {
+	  console.log("리더가 아닙니다.")
+	   for (let i = 0; i < leader_power.length; i++) {
+	     leader_power[i].setAttribute('style','display:none');
+	   }
+	 }
   </script>
 
   <!-- footer 영역 -->

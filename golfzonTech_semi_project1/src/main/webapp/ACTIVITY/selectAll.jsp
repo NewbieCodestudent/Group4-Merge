@@ -9,7 +9,7 @@
     <title>액티비티</title>
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
-    <link rel="stylesheet" href="CSS/activity/activity.css">
+    <link rel="stylesheet" href="CSS/activity/selectAll.css">
 </head>
 <body>
 	<!-- headarea -->

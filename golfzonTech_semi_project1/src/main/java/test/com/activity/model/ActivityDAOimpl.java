@@ -49,8 +49,7 @@ public class ActivityDAOimpl implements ActivityDAO {
 
 	@Override
 	public Map<Long, Integer> insert(ActivityVO vo) {
-		System.out.println("insert()....");
-//		System.out.println("vo: "+vo);
+//		System.out.println("insert()....");
 		Map<Long, Integer> result = new HashMap<Long, Integer>();
 		long act_id = 0L;
 		int flag = 0;
@@ -81,7 +80,6 @@ public class ActivityDAOimpl implements ActivityDAO {
 			pstmt.setString(1, vo.getAct_leader());
 			pstmt.setString(2, vo.getAct_name());
 			rs = pstmt.executeQuery();
-//			System.out.println("size: " + rs.getFetchSize());
 			while (rs.next()) {
 				// 방금 생성된 액티비티 ID를 act_id에 저장
 				act_id = rs.getLong("act_id");
@@ -119,8 +117,7 @@ public class ActivityDAOimpl implements ActivityDAO {
 
 	@Override
 	public int update(ActivityVO vo) {
-		System.out.println("update()....");
-		System.out.println("vo: " + vo);
+//		System.out.println("update()....");
 		int flag = 0;
 
 		try {
@@ -128,8 +125,6 @@ public class ActivityDAOimpl implements ActivityDAO {
 					ActivityDB_Oracle.PASSWORD);
 			System.out.println("conn Successed...");
 			pstmt = conn.prepareStatement(ActivityDB_Oracle.SQL_ACTIVITY_UPDATE);
-			// UPDATE ACTIVITY SET CC_ID = ?, GENDER = ?, AGE = ?, LOCATION = ?,
-			// ACT_CONTENT = ?, COST = ?, RDATE = ?, ADATE = ?, FNAME = ?, ACT_NAME=? WHERE ACT_ID = ?
 			pstmt.setInt(1, vo.getCc_id());
 			pstmt.setString(2, vo.getGender());
 			pstmt.setInt(3, vo.getAge());
@@ -175,7 +170,6 @@ public class ActivityDAOimpl implements ActivityDAO {
 	@Override
 	public int delete(ActivityVO vo) {
 //		System.out.println("delete()....");
-//		System.out.println("vo: " + vo);
 		int flag = 0;
 
 		try {
@@ -217,8 +211,7 @@ public class ActivityDAOimpl implements ActivityDAO {
 	
 	@Override
 	public int deleteAll(ClubVO vo) {
-		System.out.println("deleteAll()....");
-//		System.out.println("vo: " + vo);
+//		System.out.println("deleteAll()....");
 		int flag = 0;
 
 		try {
@@ -260,8 +253,7 @@ public class ActivityDAOimpl implements ActivityDAO {
 
 	@Override
 	public int changeStatusBySize(ActivityVO vo) {
-		System.out.println("changeStatusBySize()....");
-//		System.out.println("vo: " + vo);
+//		System.out.println("changeStatusBySize()....");
 		int flag = 0;
 
 		try {
@@ -304,7 +296,7 @@ public class ActivityDAOimpl implements ActivityDAO {
 
 	@Override
 	public void changeStatusByDate() {
-		System.out.println("changeStatusByDate()....");
+//		System.out.println("changeStatusByDate()....");
 		try {
 			conn = DriverManager.getConnection(ActivityDB_Oracle.URL, ActivityDB_Oracle.USER,
 					ActivityDB_Oracle.PASSWORD);
@@ -340,7 +332,7 @@ public class ActivityDAOimpl implements ActivityDAO {
 
 	@Override
 	public ActivityVO selectOne(ActivityVO vo) {
-		System.out.println("selectOne()....");
+//		System.out.println("selectOne()....");
 		ActivityVO vo1 = new ActivityVO();
 		try {
 			conn = DriverManager.getConnection(ActivityDB_Oracle.URL, ActivityDB_Oracle.USER,
@@ -350,7 +342,6 @@ public class ActivityDAOimpl implements ActivityDAO {
 			pstmt.setLong(1, vo.getAct_id());
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-//				"select location, rdate, adate, gender, age from activity where act_id = ?";
 				// ActivityVO의 게시글 정보를 vo객체에 저장
 				vo1.setClub_id(rs.getLong("club_id"));
 				vo1.setClub_name(rs.getString("club_name"));
@@ -398,10 +389,10 @@ public class ActivityDAOimpl implements ActivityDAO {
 
 	@Override
 	public List<ActivityVO> selectAll(String order, long club_id) {
-		System.out.println("selectAll()....order: " + order);
+//		System.out.println("selectAll()....order: " + order);
 
 		List<ActivityVO> vos = new ArrayList<ActivityVO>();
-//
+
 		try {
 			conn = DriverManager.getConnection(ActivityDB_Oracle.URL, ActivityDB_Oracle.USER,
 					ActivityDB_Oracle.PASSWORD);
@@ -431,7 +422,6 @@ public class ActivityDAOimpl implements ActivityDAO {
 				// 정보를 담은 객체를 List<ActivityVO>에 저장
 				vos.add(vo);
 			}
-//			System.out.println("vos: "+vos);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -462,7 +452,7 @@ public class ActivityDAOimpl implements ActivityDAO {
 	
 	@Override
 	public List<ActivityVO> selectAllByID(String member_id) {
-		System.out.println("selectAllByID()....member_id: " +member_id);
+//		System.out.println("selectAllByID()....member_id: " +member_id);
 
 		List<ActivityVO> vos = new ArrayList<ActivityVO>();
 //
@@ -489,7 +479,6 @@ public class ActivityDAOimpl implements ActivityDAO {
 				// 정보를 담은 객체를 List<ActivityVO>에 저장
 				vos.add(vo);
 			}
-//			System.out.println("vos: "+vos);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -520,7 +509,7 @@ public class ActivityDAOimpl implements ActivityDAO {
 	
 	@Override
 	public List<ActivityVO> selectAllByClub(Long club_id) {
-		System.out.println("selectAllByClub()....club_id: " +club_id);
+//		System.out.println("selectAllByClub()....club_id: " +club_id);
 
 		List<ActivityVO> vos = new ArrayList<ActivityVO>();
 //
@@ -578,7 +567,7 @@ public class ActivityDAOimpl implements ActivityDAO {
 
 	@Override
 	public List<ActivityVO> selectAllByLoc(String location) {
-		System.out.println("selectAllByLoc()....location: " +location);
+//		System.out.println("selectAllByLoc()....location: " +location);
 
 		List<ActivityVO> vos = new ArrayList<ActivityVO>();
 //
@@ -591,7 +580,6 @@ public class ActivityDAOimpl implements ActivityDAO {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				
-				// act_id, CLUB_ID, act_name, act_leader, fname, adate, rdate, img_name
 
 				ActivityVO vo = new ActivityVO();
 				// ActivityVO의 게시글 정보를 vo객체에 저장
@@ -607,7 +595,6 @@ public class ActivityDAOimpl implements ActivityDAO {
 				// 정보를 담은 객체를 List<ActivityVO>에 저장
 				vos.add(vo);
 			}
-//			System.out.println("vos: "+vos);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -638,7 +625,7 @@ public class ActivityDAOimpl implements ActivityDAO {
 	
 	@Override
 	public List<ActivityVO> selectAllByDate() {
-		System.out.println("selectAllByDate()....");
+//		System.out.println("selectAllByDate()....");
 
 		List<ActivityVO> vos = new ArrayList<ActivityVO>();
 //
@@ -663,7 +650,6 @@ public class ActivityDAOimpl implements ActivityDAO {
 				// 정보를 담은 객체를 List<ActivityVO>에 저장
 				vos.add(vo);
 			}
-//			System.out.println("vos: "+vos);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -694,16 +680,12 @@ public class ActivityDAOimpl implements ActivityDAO {
 	
 	@Override
 	public List<ActivityVO> searchList(long club_id, String qstmt, String searchWord) {
+//		System.out.println("searchList()....");
 		List<ActivityVO> vos = new ArrayList<ActivityVO>();
-		System.out.println("searchList()...");
-		System.out.print("club_id: " + club_id);
-		System.out.print(", qstmt : " + qstmt);
-		System.out.println(", searchWord : " + searchWord);
 		
 		try {
 			conn = DriverManager.getConnection(ActivityDB_Oracle.URL, ActivityDB_Oracle.USER,
 					ActivityDB_Oracle.PASSWORD);
-//			System.out.println("conn success ... ");
 			pstmt = conn.prepareStatement(qstmt); // 지정된 조건으로 값을 조회한 후, 최신 액비티비 순으로 정렬
 			pstmt.setLong(1, club_id);
 			pstmt.setString(2, "%"+searchWord+"%");
@@ -758,10 +740,9 @@ public class ActivityDAOimpl implements ActivityDAO {
 
 	@Override
 	public Map<Long, String> findClubById(ActivityVO vo) {
-		// TODO Auto-generated method stub
-		System.out.println("findClubById()....id: " + vo.getAct_leader());
+//		System.out.println("findClubById()....id: " + vo.getAct_leader());
 		Map<Long, String> map = new HashMap<Long, String>();
-//
+
 		try {
 			conn = DriverManager.getConnection(ActivityDB_Oracle.URL, ActivityDB_Oracle.USER,
 					ActivityDB_Oracle.PASSWORD);
@@ -802,9 +783,9 @@ public class ActivityDAOimpl implements ActivityDAO {
 
 	@Override
 	public Map<Long, String> findCC_Id() {
-		System.out.println("findCC_Id()....");
+//		System.out.println("findCC_Id()....");
 		Map<Long, String> map = new HashMap<Long, String>();
-//
+
 		try {
 			conn = DriverManager.getConnection(ActivityDB_Oracle.URL, ActivityDB_Oracle.USER,
 					ActivityDB_Oracle.PASSWORD);
@@ -844,8 +825,7 @@ public class ActivityDAOimpl implements ActivityDAO {
 
 	@Override
 	public ActLeaderVO findLeaderById(ActivityVO vo) {
-		System.out.println("vo: " + vo);
-		System.out.println("findLeaderById()....");
+//		System.out.println("findLeaderById()....");
 		ActLeaderVO vo1 = new ActLeaderVO();
 		String fname = null;
 		String name = null;
@@ -868,7 +848,6 @@ public class ActivityDAOimpl implements ActivityDAO {
 				gender = rs.getString("gender");
 				birth = format.format(rs.getDate("birth"));
 			}
-//			System.out.println("birth: " + birth);
 			// 생년월일을 만 나이(예: 만 26세)로 환산 후 int형으로 vo에 저장
 			LocalDate now = LocalDate.now();
 			LocalDate parsedBirthDate = LocalDate.parse(birth, DateTimeFormatter.ofPattern("yyyyMMdd"));
@@ -914,7 +893,7 @@ public class ActivityDAOimpl implements ActivityDAO {
 
 	@Override
 	public boolean isLeader(ActivityVO vo) {
-		System.out.println("isLeader()....");
+//		System.out.println("isLeader()....");
 		boolean flag = false;
 
 		try {
@@ -959,7 +938,7 @@ public class ActivityDAOimpl implements ActivityDAO {
 
 	@Override
 	public boolean isQualified(Long act_id, String member_id, String qstmt) {
-		System.out.println("isQualified()....");
+//		System.out.println("isQualified()....");
 		boolean flag = false;
 
 		try {
@@ -1003,6 +982,7 @@ public class ActivityDAOimpl implements ActivityDAO {
 
 	@Override
 	public String createQuery_search(String location, String gender, String searchKey, int age) {
+//		System.out.println("createQuery_search()....");
 		
 		StringBuilder sb = 
 				new StringBuilder("select a.act_id,a.club_id, a.status, a.fname, a.act_name, m.name, m.img_name, a.act_leader, a.rdate, a.adate "
@@ -1030,7 +1010,7 @@ public class ActivityDAOimpl implements ActivityDAO {
 
 	@Override
 	public String getClubName(ClubVO vo) {
-		System.out.println("getClubName()....");
+//		System.out.println("getClubName()....");
 		String club_name = null;
 		try {
 			conn = DriverManager.getConnection(ActivityDB_Oracle.URL, ActivityDB_Oracle.USER,

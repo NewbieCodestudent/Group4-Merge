@@ -68,6 +68,11 @@ public class MypageController extends HttpServlet {
          MemberVO vo2 = dao.selectOne(vo);
          System.out.println("vo2:" + vo2);
          
+         /**
+          * 1. 작성자: 이주희 (백엔드)
+          * 2. 기능: 마이페이지 접속자가 참여한 액티비티 모임 조회 기능
+          */
+         
          List<ActivityVO> activity_list = new ActivityDAOimpl().selectAllByID(member_id);
 		 request.setAttribute("activity_list", activity_list);
          

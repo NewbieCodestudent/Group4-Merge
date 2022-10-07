@@ -25,7 +25,8 @@ import test.com.album.model.AlbumDAOimpl;
 import test.com.album.model.AlbumVO;
 
 /**
- * Servlet implementation class AlbumController
+ * 1. 작성자: 이주희 (백엔드)
+ * 2. 기능: 앨범의 CRUD기능 구현
  */
 @WebServlet({ "/album_insertOK.do", "/album_updateOK.do", "/album_deleteOK.do", "/album_selectAll.do", "/album_searchList.do" })
 public class AlbumController extends HttpServlet {
@@ -53,13 +54,13 @@ public class AlbumController extends HttpServlet {
 				long club_id = Long.parseLong(request.getParameter("club_id"));
 				// 정렬 기준을 최신 순으로 설정
 				String order = request.getParameter("order") == null ? "desc" : request.getParameter("order");
-				System.out.println("club_id: " + club_id+"/ order: "+order);
+//				System.out.println("club_id: " + club_id+"/ order: "+order);
 				
 				AlbumVO vo = new AlbumVO();
 				vo.setClub_id(club_id);
 				
 				List<AlbumVO> album_list = dao.selectAll(vo, order);
-				System.out.println("album_list: "+album_list);
+//				System.out.println("album_list: "+album_list);
 				request.setAttribute("album_list", album_list);
 				request.getRequestDispatcher("ALBUM/selectAll.jsp").forward(request, response);
 			} else {
@@ -71,8 +72,8 @@ public class AlbumController extends HttpServlet {
 				long club_id = Long.parseLong(request.getParameter("club_id").trim());
 				long album_id = Long.parseLong(request.getParameter("album_id").trim());
 				// 정렬 기준을 최신 순으로 설정
-				System.out.println("album_id: " + album_id);
-				System.out.println("club_id: " + club_id);
+//				System.out.println("album_id: " + album_id);
+//				System.out.println("club_id: " + club_id);
 				
 				AlbumVO vo = new AlbumVO();
 				vo.setClub_id(club_id);
@@ -80,11 +81,11 @@ public class AlbumController extends HttpServlet {
 				
 				int delete_result = dao.delete(vo);
 				if (delete_result == 1) {
-					System.out.println("delete Success");
+//					System.out.println("delete Success");
 					request.setAttribute("delete_result", delete_result);
 					response.sendRedirect("album_selectAll.do?club_id="+club_id);
 				} else {
-					System.out.println("delete failed");
+//					System.out.println("delete failed");
 					request.setAttribute("delete_result", delete_result);
 					response.sendRedirect("album_selectAll.do?club_id="+club_id);
 				}
@@ -96,7 +97,7 @@ public class AlbumController extends HttpServlet {
 				long club_id = Long.parseLong(request.getParameter("club_id"));
 				String searchKey = request.getParameter("searchKey");
 				String searchWord = request.getParameter("searchWord");
-				System.out.println("searchKey: "+ searchKey+", searchWord: "+searchWord);
+//				System.out.println("searchKey: "+ searchKey+", searchWord: "+searchWord);
 				
 				List<AlbumVO> album_list = dao.searchList(club_id, searchKey, searchWord);
 				request.setAttribute("album_list", album_list);
@@ -121,7 +122,7 @@ public class AlbumController extends HttpServlet {
 			if (request.getSession().getAttribute("member_id") != null) {
 
 				String dir_path = request.getServletContext().getRealPath("/upload");
-				System.out.println(dir_path);
+//				System.out.println(dir_path);
 				
 				long club_id = 0;
 				String club_name = null; // 모임명
@@ -227,7 +228,7 @@ public class AlbumController extends HttpServlet {
 			if (request.getSession().getAttribute("member_id") != null) {
 
 				String dir_path = request.getServletContext().getRealPath("/upload");
-				System.out.println(dir_path);
+//				System.out.println(dir_path);
 				
 				long club_id = 0L;
 				long album_id = 0L;
@@ -291,11 +292,11 @@ public class AlbumController extends HttpServlet {
 						e.printStackTrace();
 					}
 
-					System.out.println(club_id);
-					System.out.println(album_id);
-					System.out.println(title);
-					System.out.println(fname);
-					System.out.println(writer);
+//					System.out.println(club_id);
+//					System.out.println(album_id);
+//					System.out.println(title);
+//					System.out.println(fname);
+//					System.out.println(writer);
 
 					club_name = URLEncoder.encode(club_name, "UTF-8");
 					

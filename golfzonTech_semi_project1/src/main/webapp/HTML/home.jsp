@@ -9,10 +9,10 @@
     <title>GolfMate</title>
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
-    <link rel="stylesheet" href="CSS/main_container.css">
+    <link rel="stylesheet" href="CSS/home.css">
   </head>
   <body>
-	<!-- headarea -->
+	<!-- header -->
     <div id="header">
 	    <div id="header_up">
 	      <div id="logo">
@@ -60,11 +60,13 @@
 
 	<!-- main -->
     <div id="container">
+	  <!-- 배너공간 -->
       <div id="event_ad">
         <iframe style="width: 1070px; height:200px; margin:0px; border:1px solid gray" src="AD_scr.do" scrolling="no">
           <p>배너광고위치 : 브라우저가 지원하지 않습니다.</p>
         </iframe>
       </div>
+      <!-- 추천모임, 액티비티 공간 -->
       <div id="recommend_box">
         <div id="recommend_club">
           <div style="margin:10px">
@@ -76,7 +78,7 @@
 	            <img class="recommend_img" src="upload/${club.club_img}">
 	            <strong style="font-size:20px;">${club.club_name}</strong>
 	            <div class="club_" style="height:30px; margin:0px;">
-	              <img src="upload/${club.img_name}" class="member_profill" title="member_profill" alt="member_profill">
+	              <img src="upload/${club.img_name}" class="member_profill" title="member_profill">
 	              <div style="display:inline;">
 	                <strong style="font-size:17px;">${club.club_leader}</strong><br>
 	                <strong class="club_cdate">개설일 : ${club.cdate}</strong>
@@ -93,11 +95,11 @@
           <c:forEach var="act_loc" items="${act_list_loc}" end = "4">
 	          <a class="recommend_club_view" href="activity_selectOne.do?act_id=${act_loc.act_id}">
 	            <img class="recommend_img" src="upload/${act_loc.act_fname}">
-	            <strong style="font-size:20px;">모임:${act_loc.act_name}</strong>
+	            <strong style="font-size:20px;">${act_loc.act_name}</strong>
 	            <div class="club_" style="height:30px; margin:0px;">
-	              <img src="upload/${act_loc.leader_fname}" class="member_profill" title="member_profill" alt="member_profill">
+	              <img src="upload/${act_loc.leader_fname}" class="member_profill" title="member_profill">
 	              <div style="display:inline;">
-	                <strong style="font-size:17px;">주최자 : ${act_loc.act_leader}</strong><br>
+	                <strong style="font-size:17px;">${act_loc.act_leader}</strong><br>
 	                <strong class="act_date_rdate">라운딩일 : ${act_loc.rdate}</strong><br>
 	                <strong class="act_date_adate">마감일 : ${act_loc.adate}</strong>
 	              </div>
@@ -113,11 +115,11 @@
           <c:forEach var="act_date" items="${act_list_date}" end = "4">
 	          <a class="recommend_club_view" href="activity_selectOne.do?act_id=${act_date.act_id}">
 	            <img class="recommend_img" src="upload/${act_date.act_fname}">
-	            <strong style="font-size:20px;">모임:${act_date.act_name}</strong>
+	            <strong style="font-size:18px;">${act_date.act_name}</strong>
 	            <div class="club_" style="height:30px; margin:0px;">
-	              <img src="upload/${act_date.leader_fname}" class="member_profill" title="member_profill" alt="member_profill">
+	              <img src="upload/${act_date.leader_fname}" class="member_profill" title="member_profill">
 	              <div style="display:inline;">
-	                <strong style="font-size:17px;">주최자 : ${act_date.act_leader}</strong><br>
+	                <strong style="font-size:17px;">${act_date.act_leader}</strong><br>
 	                <strong class="act_date_rdate">라운딩일 : ${act_date.rdate}</strong><br>
 	                <strong class="act_date_adate">마감일 : ${act_date.adate}</strong>
 	              </div>
@@ -128,7 +130,7 @@
       </div>
     </div>
     <script>
-    	// wdate fillter
+    	// date fillter
         let act_date_rdate = document.getElementsByClassName('act_date_rdate');
     	let act_date_adate = document.getElementsByClassName('act_date_adate');
         for (let i = 0; i < act_date_rdate.length; i++) {
@@ -136,8 +138,6 @@
           act_date_rdate[i].innerText = act_date_rdate[i].outerText.slice(0,-5);
           act_date_adate[i].innerText = act_date_adate[i].outerText.slice(0,-5);
         }
-    
-    
     </script>
 
 	<!-- footerarea -->

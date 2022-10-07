@@ -180,7 +180,7 @@
         </form>
     </div>
     <script>
-        // 기간 value 및 최소날짜 지정
+    	// 기간 value 및 최소날짜 지정
         let today = new Date().toISOString();
         today = today.slice(0,-8);
         document.getElementById('rdate').setAttribute('value',today);
@@ -193,30 +193,6 @@
         console.log(adate);
         console.log(adate > today);
         console.log(adate < today);
-
-        /* // 지역_CC명 함수
-        function location_cc(target){
-            // select의 선택된 option값
-            console.log(target.options[target.selectedIndex].value);
-            select = target.options[target.selectedIndex].value;
-            // CC명 hidden 반영
-            CC_options = document.getElementById('cc_id').options;
-
-            console.log(CC_options.length)
-            for (let i = 0; i < CC_options.length; i++) {
-                CC_options[i].hidden = true;
-            }
-            // CC명 변경
-            if(select == select) {
-                let CC_name = document.getElementsByClassName(select);
-                for (let i = 0; i < CC_name.length; i++) {
-                    CC_name[i].removeAttribute("hidden");
-                }
-                CC_name[0].selected = true;
-                return false;
-            }
-        } */
-        
 
         // 개설 전 조건 확인
         function checkValue() {
@@ -235,7 +211,7 @@
                 return false;
             }
         }
-        // reviewImg
+        // 이미지 프리뷰
         function readImage(input) {
             if(input.files && input.files[0]) {
                 const reader = new FileReader()

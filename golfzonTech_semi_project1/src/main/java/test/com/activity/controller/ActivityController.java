@@ -30,7 +30,8 @@ import test.com.activitymember.model.ActivityMemberVO;
 import test.com.club.model.ClubVO;
 
 /**
- * Servlet implementation class ActivityController
+ * 1. 작성자: 이주희 (백엔드)
+ * 2. 기능: 공개/비공개 액티비티와 액티비티 참여원 데이터의 CRUD
  */
 @WebServlet({ "/activity_insert.do", "/activity_insertOK.do", "/activity_update.do", "/activity_updateOK.do",
 		"/activity_delete.do", "/activity_deleteOK.do", "/activity_selectOne.do", "/activity_selectAll.do",
@@ -100,7 +101,6 @@ public class ActivityController extends HttpServlet {
 
 			if (member_id != null) {
 				long act_id = Long.parseLong(request.getParameter("act_id"));
-//					System.out.println("member_id: act_id => " + member_id + " : " + act_id);
 
 				ActivityVO vo = new ActivityVO();
 				vo.setAct_id(act_id);
@@ -121,7 +121,6 @@ public class ActivityController extends HttpServlet {
 
 			if (member_id != null) {
 				long act_id = Long.parseLong(request.getParameter("act_id"));
-//					System.out.println("member_id: act_id => " + member_id + " : " + act_id);
 
 				ActivityVO vo = new ActivityVO();
 				vo.setAct_id(act_id);
@@ -163,7 +162,6 @@ public class ActivityController extends HttpServlet {
 
 		} else if (sPath.equals("/club_activity_deleteOK.do")) {
 			Long act_id = Long.parseLong(request.getParameter("act_id"));
-//			System.out.println(act_id);
 
 			HttpSession session = request.getSession();
 			String member_id = (String) session.getAttribute("member_id");
@@ -233,12 +231,6 @@ public class ActivityController extends HttpServlet {
 
 				boolean isQualified = dao.isQualified(act_id, member_id, dao.createQuery_qual(activity_info.getGender(),
 						activity_info.getLocation(), activity_info.getAge()));
-//			System.out.println("leader_info: " + leader_info);
-//			System.out.println("activity_info: " + activity_info);
-//			System.out.println("applied_member: " + applied_member);
-//			System.out.println("flag: " + flag);
-//			System.out.println("act_joined_member: " + act_joined_member);
-//			System.out.println("act_not_joined_member: " + act_not_joined_member);
 
 				request.setAttribute("leader_info", leader_info); // 개설자 정보
 				request.setAttribute("activity_info", activity_info); // 액티비티 정보
@@ -277,7 +269,6 @@ public class ActivityController extends HttpServlet {
 				ActivityMemberVO vo1 = new ActivityMemberVO();
 				vo1.setAct_id(act_id);
 				vo1.setMember_id(member_id);
-//			System.out.println("vo1: "+vo1);
 
 				// 해당 액티비티의 리더의 정보, 액티비티의 정보 그리고 접속자가 리더인지 확인하는 값을 호출한다.
 				ActLeaderVO leader_info = dao.findLeaderById(vo);
@@ -296,12 +287,6 @@ public class ActivityController extends HttpServlet {
 
 				boolean isQualified = dao.isQualified(act_id, member_id, dao.createQuery_qual(activity_info.getGender(),
 						activity_info.getLocation(), activity_info.getAge()));
-//			System.out.println("leader_info: " + leader_info);
-//			System.out.println("activity_info: " + activity_info);
-//			System.out.println("applied_member: " + applied_member);
-//			System.out.println("flag: " + flag);
-//			System.out.println("act_joined_member: " + act_joined_member);
-//			System.out.println("act_not_joined_member: " + act_not_joined_member);
 
 				request.setAttribute("leader_info", leader_info); // 개설자 정보
 				request.setAttribute("activity_info", activity_info); // 액티비티 정보
@@ -323,8 +308,6 @@ public class ActivityController extends HttpServlet {
 				club_id = Long.parseLong(request.getParameter("club_id"));
 			}
 			String order = request.getParameter("order") == null ? "id" : request.getParameter("order");
-//			System.out.println("order: " + order);
-//			System.out.println("club_id: " + club_id);
 
 			// 마감일자가 지난 액티비티를 마감으로 변경
 			dao.changeStatusByDate();
@@ -341,8 +324,6 @@ public class ActivityController extends HttpServlet {
 				club_id = Long.parseLong(request.getParameter("club_id"));
 			}
 			String order = request.getParameter("order") == null ? "id" : request.getParameter("order");
-//			System.out.println("order: " + order);
-//			System.out.println("club_id: " + club_id);
 
 			// 마감일자가 지난 액티비티를 마감으로 변경
 			dao.changeStatusByDate();
@@ -408,7 +389,6 @@ public class ActivityController extends HttpServlet {
 
 				ServletFileUpload sfu = new ServletFileUpload(factory);
 				sfu.setFileSizeMax(fileSizeMax);// 파일 사이즈 제한
-//				String act_leader = (String) session.getAttribute("user_id");
 				long club_id = 0; // 공개, 비공개 가입 여부(공개=> 0, 비공개 => !0)
 				String club_name = null;
 				int cost = 0; // 비용
@@ -444,7 +424,6 @@ public class ActivityController extends HttpServlet {
 								act_name = item.getString("UTF-8").isBlank() ? null : item.getString("UTF-8").trim();
 							}
 							if (item.getFieldName().equals("club_name")) {
-								// 공백만 입력됐을 경우 null 값으로 변환
 								club_name = item.getString("UTF-8");
 							}
 							if (item.getFieldName().equals("act_content")) {
@@ -534,10 +513,8 @@ public class ActivityController extends HttpServlet {
 					}
 					
 					// String으로 넘어온 Timestamp 값을 변경해주는 코드
-//					System.out.println(rdate_str.replace("T", " " + ":00.00"));
 					Timestamp rdate = Timestamp.valueOf(rdate_str.replace("T", " ") + ":00.00");
 
-//					System.out.println(adate_str.replace("T", " ") + ":00.00");
 					Timestamp adate = Timestamp.valueOf(adate_str.replace("T", " ") + ":00.00");
 
 					vo.setCc_id(cc_id);
@@ -620,10 +597,8 @@ public class ActivityController extends HttpServlet {
 
 			HttpSession session = request.getSession();
 			String act_leader = (String) session.getAttribute("member_id");
-			System.out.println("act_leader:" + act_leader);
 
 			String dir_path = request.getServletContext().getRealPath("/upload");
-			System.out.println(dir_path);
 
 			int fileSizeMax = 1024 * 1024 * 100;
 
@@ -671,7 +646,6 @@ public class ActivityController extends HttpServlet {
 								act_name = item.getString("UTF-8").isBlank() ? null : item.getString("UTF-8").trim();
 							}
 							if (item.getFieldName().equals("club_name")) {
-								// 공백만 입력됐을 경우 null 값으로 변환
 								club_name = item.getString("UTF-8");
 							}
 							if (item.getFieldName().equals("act_content")) {
@@ -716,20 +690,6 @@ public class ActivityController extends HttpServlet {
 					e.printStackTrace();
 				}
 
-//				System.out.println(act_leader);
-//				System.out.println(club_id);
-//				System.out.println(cost);
-//				System.out.println(cc_id);
-//				System.out.println(cost);
-//				System.out.println(age);
-//				System.out.println(act_name);
-//				System.out.println(act_content);
-//				System.out.println(gender);
-//				System.out.println(location);
-//				System.out.println(fname);
-//				System.out.println(rdate_str);
-//				System.out.println(adate_str);
-
 				// 에러 발생 상황에 따라서 flag 값을 0, 1, 2, 3으로 설정
 				// (정상/ 액티비티명 누락/ 라운딩 날짜 누락/ 마감일 날짜 누락)
 				int status = 0;
@@ -753,10 +713,8 @@ public class ActivityController extends HttpServlet {
 					ActivityVO vo = new ActivityVO();
 
 					// String으로 넘어온 Timestamp 값을 변경해주는 코드
-//					System.out.println(rdate_str.replace("T", " " + ":00.00"));
 					Timestamp rdate = Timestamp.valueOf(rdate_str.replace("T", " ") + ":00.00");
 
-//					System.out.println(adate_str.replace("T", " ") + ":00.00");
 					Timestamp adate = Timestamp.valueOf(adate_str.replace("T", " ") + ":00.00");
 
 					vo.setCc_id(cc_id);
@@ -856,7 +814,6 @@ public class ActivityController extends HttpServlet {
 
 				ServletFileUpload sfu = new ServletFileUpload(factory);
 				sfu.setFileSizeMax(fileSizeMax);// 파일 사이즈 제한
-//				String act_leader = (String) session.getAttribute("user_id");
 				long act_id = 0L;
 				long club_id = 0L;
 				String club_name = null;
@@ -908,11 +865,9 @@ public class ActivityController extends HttpServlet {
 								location = item.getString("UTF-8");
 							}
 							if (item.getFieldName().equals("rdate")) {
-//								System.out.println("rdate_str: " + rdate_str);
 								rdate_str = item.getString("UTF-8").isBlank() ? null : item.getString("UTF-8");
 							}
 							if (item.getFieldName().equals("adate")) {
-//								System.out.println("adate_str: " + adate_str);
 								adate_str = item.getString("UTF-8").isBlank() ? null : item.getString("UTF-8");
 							}
 							if (item.getFieldName().equals("act_id")) {
@@ -963,7 +918,6 @@ public class ActivityController extends HttpServlet {
 					System.out.println("adate_str: " + adate_str);
 					rdate = Timestamp.valueOf(rdate_str.replace("T", " ") + ":00.00");
 
-//					System.out.println(adate_str.replace("T", " ") + ":00.00");
 					adate = Timestamp.valueOf(adate_str.replace("T", " ") + ":00.00");
 				}
 
@@ -991,7 +945,6 @@ public class ActivityController extends HttpServlet {
 				} else {
 					ActivityVO vo = new ActivityVO();
 					// String으로 넘어온 Timestamp 값을 변경해주는 코드
-//					System.out.println(rdate_str.replace("T", " " + ":00.00"));
 
 					vo.setAct_id(act_id);
 					vo.setAct_name(act_name);
@@ -1042,7 +995,6 @@ public class ActivityController extends HttpServlet {
 
 				ServletFileUpload sfu = new ServletFileUpload(factory);
 				sfu.setFileSizeMax(fileSizeMax);// 파일 사이즈 제한
-//				String act_leader = (String) session.getAttribute("user_id");
 				long act_id = 0L;
 				long club_id = 0L;
 				String club_name = null;
@@ -1127,20 +1079,6 @@ public class ActivityController extends HttpServlet {
 				} catch (FileUploadException e) {
 					e.printStackTrace();
 				}
-				System.out.println(act_id);
-				System.out.println(club_id);
-				System.out.println(act_name);
-				System.out.println(act_leader);
-				System.out.println(cost);
-				System.out.println(cc_id);
-				System.out.println(cost);
-				System.out.println(age);
-				System.out.println(act_content);
-				System.out.println(gender);
-				System.out.println(location);
-				System.out.println(rdate_str == null ? "null" : "not null");
-				System.out.println(adate_str == null ? "null" : "not null");
-				System.out.println(fname);
 
 				if (rdate_str != null && adate_str != null) {
 					System.out.println("rdate_str: " + rdate_str);
@@ -1175,7 +1113,7 @@ public class ActivityController extends HttpServlet {
 				} else {
 					ActivityVO vo = new ActivityVO();
 					// String으로 넘어온 Timestamp 값을 변경해주는 코드
-//					System.out.println(rdate_str.replace("T", " " + ":00.00"));
+					// System.out.println(rdate_str.replace("T", " " + ":00.00"));
 					
 					vo.setAct_id(act_id);
 					vo.setAct_name(act_name);

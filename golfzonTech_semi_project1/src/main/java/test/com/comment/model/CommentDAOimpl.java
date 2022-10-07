@@ -169,12 +169,6 @@ public class CommentDAOimpl implements CommentDAO {
 	}
 
 	@Override
-	public CommentVO selectOne(CommentVO vo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<CommentVO> selectAll(long board_id) {
 		System.out.println("selectAll()....");
 
@@ -266,4 +260,5 @@ public class CommentDAOimpl implements CommentDAO {
 		}
 		return flag;
 	}
+
 }

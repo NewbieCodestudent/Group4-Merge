@@ -10,7 +10,7 @@
     <title>GolfMate_전체모임</title>
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
-    <link rel="stylesheet" href="CSS/club/club_all.css">
+    <link rel="stylesheet" href="CSS/club/selectAll.css">
 </head>
 <body>
 	<!-- headarea -->
@@ -129,7 +129,7 @@
           <ul>
             <a href="club_selectOne.do?club_id=${vo.club_id}&club_name=${vo.club_name}">
               <li><img class="selectAll_img" alt="${vo.club_name}" src="upload/${vo.club_img}"></li>
-              <li class="selectAll_name">모임명 : ${vo.club_name}</li>
+              <li class="selectAll_name">${vo.club_name}</li>
               <li class="selectAll_leader">
               	<img class="selectAll_profill" src="upload/${vo.img_name}" title="member_profill" alt="member_profill">
               	${vo.club_leader}
@@ -141,23 +141,7 @@
         </div>
       </c:forEach>
     </div>
-      <!-- 하단 번호 -->
-      <div id="club_All_Number">
-        <c:if test="${startPage != 1}">
-          <a href=`clubListAction.do?page=${startPage-1}`>[ 이전 ]</a>
-        </c:if>
-        <c:forEach var="pageNum" begin="${startPage}" end="${endPage}">
-          <!-- &nbsp : space의 특수문자코드 -->
-          <c:if test="${pageNum == spage}">${pageNum}&nbsp;</c:if>
-          <c:if test="${pageNum != spage}">
-            <a href = `culbListAtion.do?page=${pageNum}`>${pageNum}&nbsp;</a>
-          </c:if>
-        </c:forEach>
-        <c:if test="${endPage != maxPage}">
-          <a href=`clubListAction.do?page=${endPage+1}`>[ 다음 ]</a>
-        </c:if>
-      </div>
-    </div>
+   </div>
     <script>
     	let club_count_src = document.getElementsByClassName('selectAll_id');
     	let club_count = document.getElementById('club_count');

@@ -56,8 +56,6 @@ public class AlbumDAOimpl implements AlbumDAO {
 			conn = DriverManager.getConnection(AlbumDB_Oracle.URL, AlbumDB_Oracle.USER, AlbumDB_Oracle.PASSWORD);
 			System.out.println("conn Successed...");
 			pstmt = conn.prepareStatement(AlbumDB_Oracle.SQL_ALBUM_INSERT);
-			// INSERT INTO ALBUM (ALBUM_ID,CLUB_ID,TITLE,FNAME,ADATE,WRITER)
-			// VALUES(SEQ_BOARD.nextval,?,?,?,SYDATE,?)
 			pstmt.setLong(1, vo.getClub_id());
 			pstmt.setString(2, vo.getTitle());
 			pstmt.setString(3, vo.getFname());
@@ -103,7 +101,6 @@ public class AlbumDAOimpl implements AlbumDAO {
 			conn = DriverManager.getConnection(AlbumDB_Oracle.URL, AlbumDB_Oracle.USER, AlbumDB_Oracle.PASSWORD);
 			System.out.println("conn Successed...");
 			pstmt = conn.prepareStatement(AlbumDB_Oracle.SQL_ALBUM_UPDATE);
-			// UPDATE ALBUM SET TITLE = ?, FNAME = ? , WDATE = SYSDATE WHERE ALBUM_ID = ?
 			pstmt.setString(1, vo.getTitle());
 			pstmt.setString(2, vo.getFname());
 			pstmt.setLong(3, vo.getAlbum_id());
@@ -148,7 +145,6 @@ public class AlbumDAOimpl implements AlbumDAO {
 			conn = DriverManager.getConnection(AlbumDB_Oracle.URL, AlbumDB_Oracle.USER, AlbumDB_Oracle.PASSWORD);
 			System.out.println("conn Successed...");
 			pstmt = conn.prepareStatement(AlbumDB_Oracle.SQL_ALBUM_DELETE);
-			// DELETE * FROM ALBUM WHERE ALBUM_ID = ?
 			pstmt.setLong(1, vo.getAlbum_id());
 			// 입력 결과 값을 flag에 저장
 			flag = pstmt.executeUpdate();
@@ -179,18 +175,6 @@ public class AlbumDAOimpl implements AlbumDAO {
 			}
 		}
 		return flag;
-	}
-
-	@Override
-	public int isWriter(AlbumVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public AlbumVO selectOne(AlbumVO vo) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override

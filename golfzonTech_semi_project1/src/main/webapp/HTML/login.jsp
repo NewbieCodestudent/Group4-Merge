@@ -90,7 +90,7 @@
   </style>
   </head>
   <body>
-    <!-- headarea -->
+    <!-- header -->
     <div id="header">
 	    <div id="header_up">
 	      <div id="logo">

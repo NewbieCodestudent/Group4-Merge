@@ -10,8 +10,8 @@
     <title>GolfMate_모임_액티비티</title>
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
-    <link rel="stylesheet" href="CSS/board/boardselectAll.css">
-    <link rel="stylesheet" href="CSS/activity/activity.css">
+    <link rel="stylesheet" href="CSS/board/selectAll.css">
+    <link rel="stylesheet" href="CSS/activity/selectAll.css">
   </head>
 <body>
 	<!-- headarea -->

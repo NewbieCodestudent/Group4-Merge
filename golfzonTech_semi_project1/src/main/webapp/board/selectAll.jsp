@@ -10,7 +10,7 @@
     <title>GolfMate_모임_게시판</title>
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
-    <link rel="stylesheet" href="CSS/board/boardselectAll.css">
+    <link rel="stylesheet" href="CSS/board/selectAll.css">
   </head>
 <body>
 	<!-- headarea -->

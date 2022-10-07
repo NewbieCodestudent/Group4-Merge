@@ -109,7 +109,7 @@
         <!-- 액티비티 버튼영역 -->
         <div id="activity_content">
             <ul>
-                <li>목록</li>
+                <li><a href="activity_selectAll.do">목록</a></li>
             </ul>
         </div>
         </ul>

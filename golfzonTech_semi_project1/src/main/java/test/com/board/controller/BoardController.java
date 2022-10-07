@@ -27,7 +27,8 @@ import test.com.comment.model.CommentDAOimpl;
 import test.com.comment.model.CommentVO;
 
 /**
- * Servlet implementation class BoardController
+ * 1. 작성자: 이주희 (백엔드)
+ * 2. 기능: 게시글의 CRUD 기능
  */
 @WebServlet({ "/board_insert.do", "/board_insertOK.do", "/board_update.do", "/board_updateOK.do", "/board_delete.do",
 		"/board_deleteOK.do", "/board_selectAll.do", "/board_selectOne.do", "/board_searchList.do" })
@@ -98,10 +99,10 @@ public class BoardController extends HttpServlet {
 				String board_id = request.getParameter("board_id");
 				String club_name = request.getParameter("club_name");
 				club_name = URLEncoder.encode(club_name, "UTF-8");
-				System.out.println(club_id + " : " + board_id);
+//				System.out.println(club_id + " : " + board_id);
 				if (board_id != null) {
-					System.out.println("board_id : " + board_id);
-					System.out.println("deleting....");
+//					System.out.println("board_id : " + board_id);
+//					System.out.println("deleting....");
 					BoardVO vo = new BoardVO();
 					vo.setBoard_id(Long.parseLong(board_id));
 					vo.setClub_id(Long.parseLong(club_id));
@@ -131,7 +132,7 @@ public class BoardController extends HttpServlet {
 			Long club_id = Long.parseLong(request.getParameter("club_id"));
 			HttpSession session = request.getSession();
 			String member_id = (String) session.getAttribute("member_id");
-			System.out.println("member_id:" + member_id);
+//			System.out.println("member_id:" + member_id);
 
 			if (member_id != null) {
 				BoardVO vo = new BoardVO();
@@ -143,6 +144,7 @@ public class BoardController extends HttpServlet {
 				List<CommentVO> vos = new CommentDAOimpl().selectAll(board_id);
 				boolean isWriter = dao.isWriter(vo);
 				boolean isLeader = dao.isLeader(vo);
+//				System.out.println("isWriter: "+isWriter+", isLeader: "+isLeader);
 
 				request.setAttribute("vo1", vo1);
 				request.setAttribute("vos", vos);
@@ -162,13 +164,13 @@ public class BoardController extends HttpServlet {
 			if (request.getSession().getAttribute("member_id") != null) {
 				Long club_id = Long.parseLong(request.getParameter("club_id"));
 				String order = request.getParameter("order") == null ? "desc" : request.getParameter("order");
-				System.out.println("club_id: " + club_id + ", order: " + order);
+//				System.out.println("club_id: " + club_id + ", order: " + order);
 
 				List<BoardVO> vos_notice = dao.selectAll_notice(club_id);
 				List<BoardVO> vos_common = dao.selectAll_common(club_id, order);
 
-				System.out.println("vos_notice: " + vos_notice);
-				System.out.println("vos_common: " + vos_common);
+//				System.out.println("vos_notice: " + vos_notice);
+//				System.out.println("vos_common: " + vos_common);
 
 				request.setAttribute("notices", vos_notice);
 				request.setAttribute("commons", vos_common);
@@ -179,9 +181,9 @@ public class BoardController extends HttpServlet {
 		} else if (sPath.equals("/board_searchList.do")) {
 			if (request.getSession().getAttribute("member_id") != null) {
 				Long club_id = Long.parseLong(request.getParameter("club_id"));
-				System.out.println("club_id: "+club_id);
-				System.out.println(request.getParameter("searchKey"));
-				System.out.println(request.getParameter("searchWord"));
+//				System.out.println("club_id: "+club_id);
+//				System.out.println(request.getParameter("searchKey"));
+//				System.out.println(request.getParameter("searchWord"));
 				List<BoardVO> vos_notice = dao.selectAll_notice(club_id);
 				List<BoardVO> vos_common = dao.searchList(club_id, request.getParameter("searchKey"),
 						request.getParameter("searchWord"));
@@ -343,12 +345,6 @@ public class BoardController extends HttpServlet {
 					ServletFileUpload sfu = new ServletFileUpload(factory);
 					sfu.setFileSizeMax(fileSizeMax);// 파일 사이즈 제한
 
-//					vo1.setTitle("NOTICE122");
-//					vo1.setContent("NOTICE221_UPDATED again");
-//					vo1.setFname("fname.jpg");
-//					vo1.setNotice(1);
-//					vo1.setBoard_id(5);
-
 					long club_id = 0L;
 					String club_name = null;
 					long board_id = 0L;
@@ -406,12 +402,12 @@ public class BoardController extends HttpServlet {
 						e.printStackTrace();
 					}
 
-					System.out.println(title);
-					System.out.println(content);
-					System.out.println(fname);
-					System.out.println(notice);
-					System.out.println(club_id);
-					System.out.println(board_id);
+//					System.out.println(title);
+//					System.out.println(content);
+//					System.out.println(fname);
+//					System.out.println(notice);
+//					System.out.println(club_id);
+//					System.out.println(board_id);
 
 					club_name = URLEncoder.encode(club_name, "UTF-8");
 					

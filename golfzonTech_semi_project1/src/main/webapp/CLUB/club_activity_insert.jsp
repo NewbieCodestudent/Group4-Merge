@@ -10,7 +10,7 @@
     <title>GolfMate_모임_액티비티</title>
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
-    <link rel="stylesheet" href="CSS/board/boardselectAll.css">
+    <link rel="stylesheet" href="CSS/board/selectAll.css">
     <style>
     /* inset 내용 */
 	#activity_content_box ul {

@@ -111,6 +111,7 @@
         }
     </style>
     <script>
+    /* id 중복체크 */
     window.onload = function() {
         console.log("onload...");
 
@@ -148,23 +149,15 @@
                  } catch (e) {
                     console.log("json 형식이 아님.");
                  }
-
               }//end if
-
            });
-
            req.open("GET", "http://localhost:8090/golfzonTech_semi_project1/idCheck.do?member_id=" + member_id.value);
-
            req.send();
-
            event.preventDefault();
            event.stopPropagation();
-
         };
      };
-  	</script>
-    <script>
-    // 공백체크 코드
+    /* 공백체크 코드 */
       function checkValue() {
         var form = document.userInfo;
 
@@ -203,18 +196,7 @@
             return false;
         }
       }
-      // 아이디 중복체크 화면 open (새창으로 열기)
-      /* function openIdChk(){
-        window.name = "parentForm";
-        window.open("idCheckpage.do","name(member_id)","resizable=no width=500 height=200 left=1000 top=500","scrollbars=no");
-      } */
-      // 아이디 입력창에 값 입력시 hidden에 idUncheck를 세팅,
-      // 중복체크 후 다시 아이디 창이 새로운 아이디를 입력했을 때 다시 중복체크3
-      /* function inputIdChk(){
-        document.userInfo.idDuplication.value ="idUncheck";
-      } */
     </script>
-  	
   </head>
   <body>
     <!-- headarea -->

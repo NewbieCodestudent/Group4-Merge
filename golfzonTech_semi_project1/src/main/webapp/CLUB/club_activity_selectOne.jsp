@@ -10,7 +10,7 @@
     <title>GolfMate_모임_액티비티</title>
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
-    <link rel="stylesheet" href="CSS/board/boardselectAll.css">
+    <link rel="stylesheet" href="CSS/board/selectAll.css">
     <style>
     /* inset 내용 */
 	#activity_content_box ul {
@@ -276,6 +276,19 @@
     <div id="club_name_box">
       <div id="club_title">
         <p style="font-size: 30px; padding-left: 30px;">
+            <strong id="var" style="">
+               <script>
+                   // 변수 var = 모집관련 boolean
+                   var status = "${activity_info.status}";
+                   if(status == 0) {
+                       document.write("모집중");
+                       document.getElementById('var').style.color = "blue";
+                   } else if(status == 1) {
+                       document.write("모집마감");
+                       document.getElementById('var').style.color = "red";
+                   }
+               </script>
+           </strong>
             <strong>${param.club_name}</strong>
         </p>
       </div>

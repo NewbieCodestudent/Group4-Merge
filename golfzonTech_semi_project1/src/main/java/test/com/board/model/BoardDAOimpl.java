@@ -52,9 +52,6 @@ public class BoardDAOimpl implements BoardDAO {
 			System.out.println("conn Successed...");
 			pstmt = conn.prepareStatement(BoardDB_Oracle.SQL_BOARD_INSERT);
 
-			// "INSERT INTO BOARD (BOARD_ID,CLUB_ID,WRITER,TITLE,CONTENT,FNAME,WDATE,NOTICE)
-			// "
-//			+ "VALUES(SEQ_BOARD.nextval,?,?,?,?,?,sysdate,?)";
 
 			pstmt.setLong(1, vo.getClub_id());
 			pstmt.setString(2, vo.getWriter());
@@ -244,8 +241,6 @@ public class BoardDAOimpl implements BoardDAO {
 
 	@Override
 	public List<BoardVO> selectAll(long club_id) {
-		// 클럽 id -> 더미변수로 설정 (20)
-//		club_id = 20;
 		System.out.println("selectAll()....club_id: " + club_id);
 		
 		List<BoardVO> vos = new ArrayList<BoardVO>();

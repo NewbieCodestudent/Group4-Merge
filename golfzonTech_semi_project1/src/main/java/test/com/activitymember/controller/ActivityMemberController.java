@@ -18,7 +18,8 @@ import test.com.activitymember.model.ActivityMemberDAOimpl;
 import test.com.activitymember.model.ActivityMemberVO;
 
 /**
- * Servlet implementation class ActivityMemberController
+ * 1. 작성자: 이주희 (백엔드)
+ * 2. 기능: 공개/비공개 액티비티와 액티비티 참여원 데이터의 CRUD
  */
 @WebServlet({ "/activity_member_insertOK.do", "/activity_member.updateOK.do", "/activity_member.deleteOK.do",
 	"/club_activity_member_insertOK.do", "/club_activity_member.updateOK.do", "/club_activity_member.deleteOK.do"})
@@ -44,11 +45,8 @@ public class ActivityMemberController extends HttpServlet {
 		System.out.println("doGet(): " + sPath);
 		if (sPath.equals("/activity_member.deleteOK.do")) {
 			Long am_id = Long.parseLong(request.getParameter("am_id"));
-//			System.out.println("am_id: " + am_id);
 			Long act_id = Long.parseLong(request.getParameter("act_id"));
-//			System.out.println("act_id: " + act_id);
 			int size = Integer.parseInt(request.getParameter("size"));
-//			System.out.println("size: "+size);
 
 			HttpSession session = request.getSession();
 			String member_id = (String) session.getAttribute("member_id");

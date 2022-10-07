@@ -114,7 +114,7 @@
 	            <li id="${album.album_id}_text">${album.title}</li>
 	            <li id="${album.album_id}_writer">${album.writer}</li>
 	            <li id="${album.album_id}_date">${album.wdate}</li>
-	            <li id="${album.album_id}_id" hidden="hidden">${album.album_id}</li>
+	            <li id="${album.album_id}_id" style="display:none;">${album.album_id}</li>
 	            </a>
 	          </ul>
           </c:forEach>
@@ -136,9 +136,9 @@
             <li><input type="file" id="upFile" name="upFile" multiple></li>
           </ul>
           <!-- 제출, 취소 버튼 -->
-          <label class="submit" for="insert_submit" style="margin-left: 295px;"><a>등 록</a></label>
+          <label class="submit" for="insert_submit" style="right:90px"><a>등 록</a></label>
           <input type="submit" id="insert_submit" hidden>
-          <label class="submit" for="insert_cancle" onclick="action('cancle_insert')"><a>취 소</a></label>
+          <label class="submit" for="insert_cancle" style="right:35px" onclick="action('cancle_insert')"><a>취 소</a></label>
           <input type="button" id="insert_cancle" hidden>
           <input type="text" name="club_id" value="${param.club_id}" hidden>
           <input type="text" name="club_name" value="${param.club_name}" hidden>
@@ -158,16 +158,19 @@
           <br>
           <ul style="padding: 0px; margin: 0px;">
             <!-- 수정 파일 업로드 공간 -->
-            <li><img id="update_image" src="기존 이미지값"></li>
+            <li><img id="update_image" src=""></li>
             <li><input type="file" id="updateFile" name="updateFile" multiple></li>
           </ul>
           <!-- 수정, 삭제버튼 -->
+          <label class="submit writer_power" for="update_submit" style="right: 145px;"><a>수 정</a></label>
+          <input type="submit" id="update_submit" hidden>
+          
+          <label class="submit writer_power" for="album_delete_button" style="right: 90px;"><a id="delete_button" href="">삭 제</a></label>
+          <input type="submit" id="album_delete_button" hidden>
+          
+          <label class="submit" for="update_cancle" style="right:35px" onclick="action('cancle_insert')"><a>닫 기</a></label>
           <input type="button" id="update_cancle" hidden>
-          <ul id="update_submit">
-          	<li><a class="submit" for="update_cancle" style="margin-left: 365px;" onclick="action('cancle_insert')">닫 기</a></li>
-          	<li><a id="delete_button" class="update_submit" style="right: 110px;" href="">삭 제</a></li>
-          	<li><input type="submit" id="update_submit" value="수 정"></li>
-          </ul>
+          
           <input type="text" value="${param.club_id}" name="club_id" hidden>
           <input type="text" value="${param.club_name}" name="club_name" hidden>
         </form>
@@ -195,8 +198,6 @@
     function action(x,y,z){
       document.getElementById('album_insert').setAttribute('style','display:none');
       document.getElementById('selectOne').setAttribute('style','display:none');
-      console.log(y);
-	  console.log(z);
       if(x == "insert") {
         document.getElementById('album_insert').setAttribute('style','display:block');
       } else if(x == "update") {
@@ -212,12 +213,18 @@
           }
       }
     }
+    
+	// session 값 가져와서 작성자와 맞는지 확인
+	<%String session_id = (String)session.getAttribute("member_id");%>
+	let session = "<%=session_id%>";
+	console.log("session : "+session);
+    
     function selectOne(x) {
     	if(x == x) {
             document.getElementById('selectOne').setAttribute('style','display:block');
             let update_id = document.getElementById(x+'_id').outerText;
             let club_id = document.getElementById('club_id').value;
-            console.log(club_id);
+            console.log("club_id : "+club_id);
             // selectOne에 선택한 객체의 값 넣기
             console.log(document.getElementById(x+'_text').outerText)
             console.log(document.getElementById(x+'_writer').outerText)
@@ -230,8 +237,25 @@
             document.getElementById('update_id').setAttribute('value',document.getElementById(x+'_id').outerText);
             document.getElementById('delete_button').setAttribute('href',"album_deleteOK.do?album_id="+x+"&club_id=${param.club_id}&club_name=${param.club_name}");
             document.getElementById('update_image').setAttribute('src',document.getElementById(x+'_fname').getAttribute('src'));
-          } 
+            
+            let comment_writer = document.getElementById('selectOne_writer').value;
+      	  	console.log("comment_writer : "+comment_writer)
+      	  	console.log(session == comment_writer)
+			let writer_power = document.getElementsByClassName('writer_power');      	  	
+      	  	if(session == comment_writer) {
+      	  		console.log("작성자")
+      		 	for (var i = 0; i < writer_power.length; i++) {
+      		 		writer_power[i].addAttribute('style','display:block');
+	      		}
+      	  	} else {
+	      	  	console.log("작성자가 아님")
+	  		 	for (var i = 0; i < writer_power.length; i++) {
+	  		 		writer_power[i].setAttribute('style','display:none');
+	      		}
+      	  	}
+    	} 
     }
+    
     // 작성일 출력 함수
     let date = new Date();
     let year = date.getFullYear();

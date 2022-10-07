@@ -16,7 +16,8 @@ import test.com.club.model.ClubDAOimpl;
 import test.com.club.model.ClubVO;
 
 /**
- * Servlet implementation class HomeController
+ * 1. 작성자: 이주희 (백엔드)
+ * 2. 기능: 메인 페이지 추천 모임/ 액티비티 조회 기능
  */
 @WebServlet({"/home.do", "/AD_scr.do", "/event_selectAll.do", "/event_selectOne.do"})
 public class HomeController extends HttpServlet {
@@ -57,7 +58,7 @@ public class HomeController extends HttpServlet {
 			
 			request.getRequestDispatcher("HTML/home.jsp").forward(request, response);
 		} else if (sPath.equals("/AD_scr.do")) {
-			request.getRequestDispatcher("HTML/AD_scr.jsp").forward(request, response);
+			request.getRequestDispatcher("EVENT/AD_scr.jsp").forward(request, response);
 		} else if (sPath.equals("/event_selectAll.do")) {
 			request.getRequestDispatcher("EVENT/selectAll.jsp").forward(request, response);
 		} else if (sPath.equals("/event_selectOne.do")) {

@@ -51,6 +51,12 @@
 #event_sort ul li:last-child {
     border: 0px;
 }
+#event_main {
+	overflow:auto;
+    display: inline-flex;
+    align-content: flex-start;
+    flex-flow: row wrap;
+}
 .event_content {
     display: inline-block;
     width: 225px;
